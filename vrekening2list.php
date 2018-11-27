@@ -1816,8 +1816,6 @@ class cvrekening2_list extends cvrekening2 {
 		$sSqlWrk = "SELECT `id`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening`";
 		$sWhereWrk = "";
 		$this->parent->LookupFilters = array();
-		$lookuptblfilter = "length(`parent`) = 1";
-		ew_AddFilter($sWhereWrk, $lookuptblfilter);
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
 		$this->Lookup_Selecting($this->parent, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;

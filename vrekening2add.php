@@ -684,8 +684,6 @@ class cvrekening2_add extends cvrekening2 {
 		$sSqlWrk = "SELECT `id`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening`";
 		$sWhereWrk = "";
 		$this->parent->LookupFilters = array();
-		$lookuptblfilter = "length(`parent`) = 1";
-		ew_AddFilter($sWhereWrk, $lookuptblfilter);
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
 		$this->Lookup_Selecting($this->parent, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
@@ -839,8 +837,6 @@ class cvrekening2_add extends cvrekening2 {
 			$sSqlWrk = "SELECT `id`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `trekening`";
 			$sWhereWrk = "";
 			$this->parent->LookupFilters = array();
-			$lookuptblfilter = "length(`parent`) = 1";
-			ew_AddFilter($sWhereWrk, $lookuptblfilter);
 			ew_AddFilter($sWhereWrk, $sFilterWrk);
 			$this->Lookup_Selecting($this->parent, $sWhereWrk); // Call Lookup selecting
 			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
@@ -1103,8 +1099,6 @@ class cvrekening2_add extends cvrekening2 {
 			$sSqlWrk = "SELECT `id` AS `LinkFld`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening`";
 			$sWhereWrk = "";
 			$this->parent->LookupFilters = array();
-			$lookuptblfilter = "length(`parent`) = 1";
-			ew_AddFilter($sWhereWrk, $lookuptblfilter);
 			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => '`id` = {filter_value}', "t0" => "200", "fn0" => "");
 			$sSqlWrk = "";
 			$this->Lookup_Selecting($this->parent, $sWhereWrk); // Call Lookup selecting
