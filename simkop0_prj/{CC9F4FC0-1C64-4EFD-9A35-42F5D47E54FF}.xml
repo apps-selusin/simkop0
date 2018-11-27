@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration date="2018/11/27" author="e.World Technology Ltd.">
+  <project id="{CC9F4FC0-1C64-4EFD-9A35-42F5D47E54FF}" file="" name="simkop0_prj" product="PHPMaker" version="13.0" datetime="2018/11/27 15:54:53" languagefolder="phplang" userlevel="-2,&quot;Anonymous&quot;,0;">
+    <table id="tanggota" name="tanggota" caption="tanggota" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tbayarangsuran" name="tbayarangsuran" caption="tbayarangsuran" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tbayartitipan" name="tbayartitipan" caption="tbayartitipan" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tbayartitipansaldo" name="tbayartitipansaldo" caption="tbayartitipansaldo" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="texcel" name="texcel" caption="texcel" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="texcelsheet" name="texcelsheet" caption="texcelsheet" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tjurnal" name="tjurnal" caption="tjurnal" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tjurnalkasbank" name="tjurnalkasbank" caption="tjurnalkasbank" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tjurnalsaldo" name="tjurnalsaldo" caption="tjurnalsaldo" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tjurnaltransaksi" name="tjurnaltransaksi" caption="tjurnaltransaksi" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tkantor" name="tkantor" caption="tkantor" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tlaporan" name="tlaporan" caption="tlaporan" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tpinjaman" name="tpinjaman" caption="tpinjaman" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tpinjamandetail" name="tpinjamandetail" caption="tpinjamandetail" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tpinjamandetail_" name="tpinjamandetail_" caption="tpinjamandetail " userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="trekening" name="trekening" caption="trekening" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="tuser" name="tuser" caption="tuser" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="vrekening" name="vrekening" caption="vrekening" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="vrekeninggroup" name="vrekeninggroup" caption="vrekeninggroup" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="vrekening2" name="vrekening2" caption="vrekening 2" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+  </project>
+</configuration>
