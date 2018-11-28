@@ -253,7 +253,7 @@ class cdefault {
 		// If session expired, show session expired message
 		if (@$_GET["expired"] == "1")
 			$this->setFailureMessage($Language->Phrase("SessionExpired"));
-		$this->Page_Terminate("vrekening2list.php"); // Exit and go to default page
+		$this->Page_Terminate("trekening3list.php"); // Exit and go to default page
 	}
 
 	// Page Load event

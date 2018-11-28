@@ -585,6 +585,9 @@
     <menu id="10022">
       <phrase id="menutext" value="trekening 2" />
     </menu>
+    <menu id="10023">
+      <phrase id="menutext" value="trekening 3" />
+    </menu>
     <menu id="21">
       <phrase id="menutext" value="Report 1" />
     </menu>
@@ -2360,6 +2363,58 @@
       </field>
       <field id="keterangan">
         <phrase id="fldcaption" value="keterangan" />
+      </field>
+      <field id="active">
+        <phrase id="fldcaption" value="active" />
+        <phrase id="fldtagvalue1" value="yes" />
+        <phrase id="fldtagcaption1" value="yes" />
+        <phrase id="fldtagvalue2" value="no" />
+        <phrase id="fldtagcaption2" value="no" />
+      </field>
+    </table>
+    <table id="trekening3">
+      <phrase id="tblcaption" value="trekening 3" />
+      <field id="group">
+        <phrase id="fldcaption" value="Group" />
+      </field>
+      <field id="id">
+        <phrase id="fldcaption" value="Kode" />
+      </field>
+      <field id="id1">
+        <phrase id="fldcaption" value="Kode (Head)" />
+      </field>
+      <field id="id2">
+        <phrase id="fldcaption" value="Kode (Detail)" />
+      </field>
+      <field id="parent">
+        <phrase id="fldcaption" value="Head" />
+      </field>
+      <field id="id3">
+        <phrase id="fldcaption" value="Kode" />
+      </field>
+      <field id="rekening">
+        <phrase id="fldcaption" value="Rekening" />
+      </field>
+      <field id="posisi">
+        <phrase id="fldcaption" value="posisi" />
+      </field>
+      <field id="laporan">
+        <phrase id="fldcaption" value="laporan" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="tipe">
+        <phrase id="fldcaption" value="Tipe" />
+        <phrase id="fldtagvalue1" value="HEADER" />
+        <phrase id="fldtagcaption1" value="HEAD" />
+        <phrase id="fldtagvalue2" value="DETAIL" />
+        <phrase id="fldtagcaption2" value="DETAIL" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Jenis Rekening" />
+        <phrase id="fldtagvalue1" value="KAS/BANK" />
+        <phrase id="fldtagcaption1" value="KAS/BANK" />
       </field>
       <field id="active">
         <phrase id="fldcaption" value="active" />

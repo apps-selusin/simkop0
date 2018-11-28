@@ -5,6 +5,7 @@
 // Generate all menu items
 $RootMenu->IsRoot = TRUE;
 $RootMenu->AddMenuItem(10022, "mi_trekening2", $Language->MenuPhrase("10022", "MenuText"), "trekening2list.php", -1, "", TRUE, FALSE, FALSE);
+$RootMenu->AddMenuItem(10023, "mi_trekening3", $Language->MenuPhrase("10023", "MenuText"), "trekening3list.php", -1, "", TRUE, FALSE, FALSE);
 $RootMenu->AddMenuItem(21, "mi_Report1", $Language->MenuPhrase("21", "MenuText"), "Report1report.php", -1, "", TRUE, FALSE, FALSE);
 $RootMenu->AddMenuItem(1, "mi_tanggota", $Language->MenuPhrase("1", "MenuText"), "tanggotalist.php", -1, "", TRUE, FALSE, FALSE);
 $RootMenu->AddMenuItem(2, "mi_tbayarangsuran", $Language->MenuPhrase("2", "MenuText"), "tbayarangsuranlist.php", -1, "", TRUE, FALSE, FALSE);
