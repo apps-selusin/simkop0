@@ -344,16 +344,12 @@ class cvrekening2_list extends cvrekening2 {
 		$this->SetupListOptions();
 		$this->group->SetVisibility();
 		$this->id1->SetVisibility();
+		$this->rekening1->SetVisibility();
 		$this->id2->SetVisibility();
-		$this->rekening->SetVisibility();
+		$this->rekening2->SetVisibility();
 		$this->tipe->SetVisibility();
-		$this->posisi->SetVisibility();
-		$this->laporan->SetVisibility();
 		$this->status->SetVisibility();
-		$this->parent->SetVisibility();
 		$this->keterangan->SetVisibility();
-		$this->active->SetVisibility();
-		$this->id->SetVisibility();
 
 		// Global Page Loading event (in userfn*.php)
 		Page_Loading();
@@ -684,14 +680,16 @@ class cvrekening2_list extends cvrekening2 {
 		// Initialize
 		$sFilterList = "";
 		$sFilterList = ew_Concat($sFilterList, $this->group->AdvancedSearch->ToJSON(), ","); // Field group
-		$sFilterList = ew_Concat($sFilterList, $this->id1->AdvancedSearch->ToJSON(), ","); // Field id1
-		$sFilterList = ew_Concat($sFilterList, $this->id2->AdvancedSearch->ToJSON(), ","); // Field id2
+		$sFilterList = ew_Concat($sFilterList, $this->parent->AdvancedSearch->ToJSON(), ","); // Field parent
 		$sFilterList = ew_Concat($sFilterList, $this->rekening->AdvancedSearch->ToJSON(), ","); // Field rekening
+		$sFilterList = ew_Concat($sFilterList, $this->id1->AdvancedSearch->ToJSON(), ","); // Field id1
+		$sFilterList = ew_Concat($sFilterList, $this->rekening1->AdvancedSearch->ToJSON(), ","); // Field rekening1
+		$sFilterList = ew_Concat($sFilterList, $this->id2->AdvancedSearch->ToJSON(), ","); // Field id2
+		$sFilterList = ew_Concat($sFilterList, $this->rekening2->AdvancedSearch->ToJSON(), ","); // Field rekening2
 		$sFilterList = ew_Concat($sFilterList, $this->tipe->AdvancedSearch->ToJSON(), ","); // Field tipe
 		$sFilterList = ew_Concat($sFilterList, $this->posisi->AdvancedSearch->ToJSON(), ","); // Field posisi
 		$sFilterList = ew_Concat($sFilterList, $this->laporan->AdvancedSearch->ToJSON(), ","); // Field laporan
 		$sFilterList = ew_Concat($sFilterList, $this->status->AdvancedSearch->ToJSON(), ","); // Field status
-		$sFilterList = ew_Concat($sFilterList, $this->parent->AdvancedSearch->ToJSON(), ","); // Field parent
 		$sFilterList = ew_Concat($sFilterList, $this->keterangan->AdvancedSearch->ToJSON(), ","); // Field keterangan
 		$sFilterList = ew_Concat($sFilterList, $this->active->AdvancedSearch->ToJSON(), ","); // Field active
 		$sFilterList = ew_Concat($sFilterList, $this->id->AdvancedSearch->ToJSON(), ","); // Field id
@@ -747,6 +745,22 @@ class cvrekening2_list extends cvrekening2 {
 		$this->group->AdvancedSearch->SearchOperator2 = @$filter["w_group"];
 		$this->group->AdvancedSearch->Save();
 
+		// Field parent
+		$this->parent->AdvancedSearch->SearchValue = @$filter["x_parent"];
+		$this->parent->AdvancedSearch->SearchOperator = @$filter["z_parent"];
+		$this->parent->AdvancedSearch->SearchCondition = @$filter["v_parent"];
+		$this->parent->AdvancedSearch->SearchValue2 = @$filter["y_parent"];
+		$this->parent->AdvancedSearch->SearchOperator2 = @$filter["w_parent"];
+		$this->parent->AdvancedSearch->Save();
+
+		// Field rekening
+		$this->rekening->AdvancedSearch->SearchValue = @$filter["x_rekening"];
+		$this->rekening->AdvancedSearch->SearchOperator = @$filter["z_rekening"];
+		$this->rekening->AdvancedSearch->SearchCondition = @$filter["v_rekening"];
+		$this->rekening->AdvancedSearch->SearchValue2 = @$filter["y_rekening"];
+		$this->rekening->AdvancedSearch->SearchOperator2 = @$filter["w_rekening"];
+		$this->rekening->AdvancedSearch->Save();
+
 		// Field id1
 		$this->id1->AdvancedSearch->SearchValue = @$filter["x_id1"];
 		$this->id1->AdvancedSearch->SearchOperator = @$filter["z_id1"];
@@ -754,6 +768,14 @@ class cvrekening2_list extends cvrekening2 {
 		$this->id1->AdvancedSearch->SearchValue2 = @$filter["y_id1"];
 		$this->id1->AdvancedSearch->SearchOperator2 = @$filter["w_id1"];
 		$this->id1->AdvancedSearch->Save();
+
+		// Field rekening1
+		$this->rekening1->AdvancedSearch->SearchValue = @$filter["x_rekening1"];
+		$this->rekening1->AdvancedSearch->SearchOperator = @$filter["z_rekening1"];
+		$this->rekening1->AdvancedSearch->SearchCondition = @$filter["v_rekening1"];
+		$this->rekening1->AdvancedSearch->SearchValue2 = @$filter["y_rekening1"];
+		$this->rekening1->AdvancedSearch->SearchOperator2 = @$filter["w_rekening1"];
+		$this->rekening1->AdvancedSearch->Save();
 
 		// Field id2
 		$this->id2->AdvancedSearch->SearchValue = @$filter["x_id2"];
@@ -763,13 +785,13 @@ class cvrekening2_list extends cvrekening2 {
 		$this->id2->AdvancedSearch->SearchOperator2 = @$filter["w_id2"];
 		$this->id2->AdvancedSearch->Save();
 
-		// Field rekening
-		$this->rekening->AdvancedSearch->SearchValue = @$filter["x_rekening"];
-		$this->rekening->AdvancedSearch->SearchOperator = @$filter["z_rekening"];
-		$this->rekening->AdvancedSearch->SearchCondition = @$filter["v_rekening"];
-		$this->rekening->AdvancedSearch->SearchValue2 = @$filter["y_rekening"];
-		$this->rekening->AdvancedSearch->SearchOperator2 = @$filter["w_rekening"];
-		$this->rekening->AdvancedSearch->Save();
+		// Field rekening2
+		$this->rekening2->AdvancedSearch->SearchValue = @$filter["x_rekening2"];
+		$this->rekening2->AdvancedSearch->SearchOperator = @$filter["z_rekening2"];
+		$this->rekening2->AdvancedSearch->SearchCondition = @$filter["v_rekening2"];
+		$this->rekening2->AdvancedSearch->SearchValue2 = @$filter["y_rekening2"];
+		$this->rekening2->AdvancedSearch->SearchOperator2 = @$filter["w_rekening2"];
+		$this->rekening2->AdvancedSearch->Save();
 
 		// Field tipe
 		$this->tipe->AdvancedSearch->SearchValue = @$filter["x_tipe"];
@@ -803,14 +825,6 @@ class cvrekening2_list extends cvrekening2 {
 		$this->status->AdvancedSearch->SearchOperator2 = @$filter["w_status"];
 		$this->status->AdvancedSearch->Save();
 
-		// Field parent
-		$this->parent->AdvancedSearch->SearchValue = @$filter["x_parent"];
-		$this->parent->AdvancedSearch->SearchOperator = @$filter["z_parent"];
-		$this->parent->AdvancedSearch->SearchCondition = @$filter["v_parent"];
-		$this->parent->AdvancedSearch->SearchValue2 = @$filter["y_parent"];
-		$this->parent->AdvancedSearch->SearchOperator2 = @$filter["w_parent"];
-		$this->parent->AdvancedSearch->Save();
-
 		// Field keterangan
 		$this->keterangan->AdvancedSearch->SearchValue = @$filter["x_keterangan"];
 		$this->keterangan->AdvancedSearch->SearchOperator = @$filter["z_keterangan"];
@@ -843,14 +857,16 @@ class cvrekening2_list extends cvrekening2 {
 		global $Security;
 		$sWhere = "";
 		$this->BuildSearchSql($sWhere, $this->group, $Default, FALSE); // group
-		$this->BuildSearchSql($sWhere, $this->id1, $Default, FALSE); // id1
-		$this->BuildSearchSql($sWhere, $this->id2, $Default, FALSE); // id2
+		$this->BuildSearchSql($sWhere, $this->parent, $Default, FALSE); // parent
 		$this->BuildSearchSql($sWhere, $this->rekening, $Default, FALSE); // rekening
+		$this->BuildSearchSql($sWhere, $this->id1, $Default, FALSE); // id1
+		$this->BuildSearchSql($sWhere, $this->rekening1, $Default, FALSE); // rekening1
+		$this->BuildSearchSql($sWhere, $this->id2, $Default, FALSE); // id2
+		$this->BuildSearchSql($sWhere, $this->rekening2, $Default, FALSE); // rekening2
 		$this->BuildSearchSql($sWhere, $this->tipe, $Default, FALSE); // tipe
 		$this->BuildSearchSql($sWhere, $this->posisi, $Default, FALSE); // posisi
 		$this->BuildSearchSql($sWhere, $this->laporan, $Default, FALSE); // laporan
-		$this->BuildSearchSql($sWhere, $this->status, $Default, FALSE); // status
-		$this->BuildSearchSql($sWhere, $this->parent, $Default, FALSE); // parent
+		$this->BuildSearchSql($sWhere, $this->status, $Default, TRUE); // status
 		$this->BuildSearchSql($sWhere, $this->keterangan, $Default, FALSE); // keterangan
 		$this->BuildSearchSql($sWhere, $this->active, $Default, FALSE); // active
 		$this->BuildSearchSql($sWhere, $this->id, $Default, FALSE); // id
@@ -861,14 +877,16 @@ class cvrekening2_list extends cvrekening2 {
 		}
 		if (!$Default && $this->Command == "search") {
 			$this->group->AdvancedSearch->Save(); // group
-			$this->id1->AdvancedSearch->Save(); // id1
-			$this->id2->AdvancedSearch->Save(); // id2
+			$this->parent->AdvancedSearch->Save(); // parent
 			$this->rekening->AdvancedSearch->Save(); // rekening
+			$this->id1->AdvancedSearch->Save(); // id1
+			$this->rekening1->AdvancedSearch->Save(); // rekening1
+			$this->id2->AdvancedSearch->Save(); // id2
+			$this->rekening2->AdvancedSearch->Save(); // rekening2
 			$this->tipe->AdvancedSearch->Save(); // tipe
 			$this->posisi->AdvancedSearch->Save(); // posisi
 			$this->laporan->AdvancedSearch->Save(); // laporan
 			$this->status->AdvancedSearch->Save(); // status
-			$this->parent->AdvancedSearch->Save(); // parent
 			$this->keterangan->AdvancedSearch->Save(); // keterangan
 			$this->active->AdvancedSearch->Save(); // active
 			$this->id->AdvancedSearch->Save(); // id
@@ -927,14 +945,16 @@ class cvrekening2_list extends cvrekening2 {
 	// Return basic search SQL
 	function BasicSearchSQL($arKeywords, $type) {
 		$sWhere = "";
-		$this->BuildBasicSearchSQL($sWhere, $this->id1, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->id2, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->parent, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->rekening, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->id1, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->rekening1, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->id2, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->rekening2, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->tipe, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->posisi, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->laporan, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->status, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->parent, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->keterangan, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->id, $arKeywords, $type);
 		return $sWhere;
@@ -1064,11 +1084,17 @@ class cvrekening2_list extends cvrekening2 {
 			return TRUE;
 		if ($this->group->AdvancedSearch->IssetSession())
 			return TRUE;
+		if ($this->parent->AdvancedSearch->IssetSession())
+			return TRUE;
+		if ($this->rekening->AdvancedSearch->IssetSession())
+			return TRUE;
 		if ($this->id1->AdvancedSearch->IssetSession())
+			return TRUE;
+		if ($this->rekening1->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->id2->AdvancedSearch->IssetSession())
 			return TRUE;
-		if ($this->rekening->AdvancedSearch->IssetSession())
+		if ($this->rekening2->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->tipe->AdvancedSearch->IssetSession())
 			return TRUE;
@@ -1077,8 +1103,6 @@ class cvrekening2_list extends cvrekening2 {
 		if ($this->laporan->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->status->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->parent->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->keterangan->AdvancedSearch->IssetSession())
 			return TRUE;
@@ -1116,14 +1140,16 @@ class cvrekening2_list extends cvrekening2 {
 	// Clear all advanced search parameters
 	function ResetAdvancedSearchParms() {
 		$this->group->AdvancedSearch->UnsetSession();
-		$this->id1->AdvancedSearch->UnsetSession();
-		$this->id2->AdvancedSearch->UnsetSession();
+		$this->parent->AdvancedSearch->UnsetSession();
 		$this->rekening->AdvancedSearch->UnsetSession();
+		$this->id1->AdvancedSearch->UnsetSession();
+		$this->rekening1->AdvancedSearch->UnsetSession();
+		$this->id2->AdvancedSearch->UnsetSession();
+		$this->rekening2->AdvancedSearch->UnsetSession();
 		$this->tipe->AdvancedSearch->UnsetSession();
 		$this->posisi->AdvancedSearch->UnsetSession();
 		$this->laporan->AdvancedSearch->UnsetSession();
 		$this->status->AdvancedSearch->UnsetSession();
-		$this->parent->AdvancedSearch->UnsetSession();
 		$this->keterangan->AdvancedSearch->UnsetSession();
 		$this->active->AdvancedSearch->UnsetSession();
 		$this->id->AdvancedSearch->UnsetSession();
@@ -1138,14 +1164,16 @@ class cvrekening2_list extends cvrekening2 {
 
 		// Restore advanced search values
 		$this->group->AdvancedSearch->Load();
-		$this->id1->AdvancedSearch->Load();
-		$this->id2->AdvancedSearch->Load();
+		$this->parent->AdvancedSearch->Load();
 		$this->rekening->AdvancedSearch->Load();
+		$this->id1->AdvancedSearch->Load();
+		$this->rekening1->AdvancedSearch->Load();
+		$this->id2->AdvancedSearch->Load();
+		$this->rekening2->AdvancedSearch->Load();
 		$this->tipe->AdvancedSearch->Load();
 		$this->posisi->AdvancedSearch->Load();
 		$this->laporan->AdvancedSearch->Load();
 		$this->status->AdvancedSearch->Load();
-		$this->parent->AdvancedSearch->Load();
 		$this->keterangan->AdvancedSearch->Load();
 		$this->active->AdvancedSearch->Load();
 		$this->id->AdvancedSearch->Load();
@@ -1160,16 +1188,12 @@ class cvrekening2_list extends cvrekening2 {
 			$this->CurrentOrderType = @$_GET["ordertype"];
 			$this->UpdateSort($this->group); // group
 			$this->UpdateSort($this->id1); // id1
+			$this->UpdateSort($this->rekening1); // rekening1
 			$this->UpdateSort($this->id2); // id2
-			$this->UpdateSort($this->rekening); // rekening
+			$this->UpdateSort($this->rekening2); // rekening2
 			$this->UpdateSort($this->tipe); // tipe
-			$this->UpdateSort($this->posisi); // posisi
-			$this->UpdateSort($this->laporan); // laporan
 			$this->UpdateSort($this->status); // status
-			$this->UpdateSort($this->parent); // parent
 			$this->UpdateSort($this->keterangan); // keterangan
-			$this->UpdateSort($this->active); // active
-			$this->UpdateSort($this->id); // id
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -1204,16 +1228,12 @@ class cvrekening2_list extends cvrekening2 {
 				$this->setSessionOrderBy($sOrderBy);
 				$this->group->setSort("");
 				$this->id1->setSort("");
+				$this->rekening1->setSort("");
 				$this->id2->setSort("");
-				$this->rekening->setSort("");
+				$this->rekening2->setSort("");
 				$this->tipe->setSort("");
-				$this->posisi->setSort("");
-				$this->laporan->setSort("");
 				$this->status->setSort("");
-				$this->parent->setSort("");
 				$this->keterangan->setSort("");
-				$this->active->setSort("");
-				$this->id->setSort("");
 			}
 
 			// Reset start position
@@ -1581,20 +1601,35 @@ class cvrekening2_list extends cvrekening2 {
 		if ($this->group->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->group->AdvancedSearch->SearchOperator = @$_GET["z_group"];
 
+		// parent
+		$this->parent->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_parent"]);
+		if ($this->parent->AdvancedSearch->SearchValue <> "") $this->Command = "search";
+		$this->parent->AdvancedSearch->SearchOperator = @$_GET["z_parent"];
+
+		// rekening
+		$this->rekening->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_rekening"]);
+		if ($this->rekening->AdvancedSearch->SearchValue <> "") $this->Command = "search";
+		$this->rekening->AdvancedSearch->SearchOperator = @$_GET["z_rekening"];
+
 		// id1
 		$this->id1->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_id1"]);
 		if ($this->id1->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->id1->AdvancedSearch->SearchOperator = @$_GET["z_id1"];
+
+		// rekening1
+		$this->rekening1->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_rekening1"]);
+		if ($this->rekening1->AdvancedSearch->SearchValue <> "") $this->Command = "search";
+		$this->rekening1->AdvancedSearch->SearchOperator = @$_GET["z_rekening1"];
 
 		// id2
 		$this->id2->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_id2"]);
 		if ($this->id2->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->id2->AdvancedSearch->SearchOperator = @$_GET["z_id2"];
 
-		// rekening
-		$this->rekening->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_rekening"]);
-		if ($this->rekening->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->rekening->AdvancedSearch->SearchOperator = @$_GET["z_rekening"];
+		// rekening2
+		$this->rekening2->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_rekening2"]);
+		if ($this->rekening2->AdvancedSearch->SearchValue <> "") $this->Command = "search";
+		$this->rekening2->AdvancedSearch->SearchOperator = @$_GET["z_rekening2"];
 
 		// tipe
 		$this->tipe->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_tipe"]);
@@ -1615,11 +1650,8 @@ class cvrekening2_list extends cvrekening2 {
 		$this->status->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_status"]);
 		if ($this->status->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->status->AdvancedSearch->SearchOperator = @$_GET["z_status"];
-
-		// parent
-		$this->parent->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_parent"]);
-		if ($this->parent->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->parent->AdvancedSearch->SearchOperator = @$_GET["z_parent"];
+		if (is_array($this->status->AdvancedSearch->SearchValue)) $this->status->AdvancedSearch->SearchValue = implode(",", $this->status->AdvancedSearch->SearchValue);
+		if (is_array($this->status->AdvancedSearch->SearchValue2)) $this->status->AdvancedSearch->SearchValue2 = implode(",", $this->status->AdvancedSearch->SearchValue2);
 
 		// keterangan
 		$this->keterangan->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_keterangan"]);
@@ -1693,14 +1725,16 @@ class cvrekening2_list extends cvrekening2 {
 		$row = &$rs->fields;
 		$this->Row_Selected($row);
 		$this->group->setDbValue($rs->fields('group'));
-		$this->id1->setDbValue($rs->fields('id1'));
-		$this->id2->setDbValue($rs->fields('id2'));
+		$this->parent->setDbValue($rs->fields('parent'));
 		$this->rekening->setDbValue($rs->fields('rekening'));
+		$this->id1->setDbValue($rs->fields('id1'));
+		$this->rekening1->setDbValue($rs->fields('rekening1'));
+		$this->id2->setDbValue($rs->fields('id2'));
+		$this->rekening2->setDbValue($rs->fields('rekening2'));
 		$this->tipe->setDbValue($rs->fields('tipe'));
 		$this->posisi->setDbValue($rs->fields('posisi'));
 		$this->laporan->setDbValue($rs->fields('laporan'));
 		$this->status->setDbValue($rs->fields('status'));
-		$this->parent->setDbValue($rs->fields('parent'));
 		$this->keterangan->setDbValue($rs->fields('keterangan'));
 		$this->active->setDbValue($rs->fields('active'));
 		$this->id->setDbValue($rs->fields('id'));
@@ -1711,14 +1745,16 @@ class cvrekening2_list extends cvrekening2 {
 		if (!$rs || !is_array($rs) && $rs->EOF) return;
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->group->DbValue = $row['group'];
-		$this->id1->DbValue = $row['id1'];
-		$this->id2->DbValue = $row['id2'];
+		$this->parent->DbValue = $row['parent'];
 		$this->rekening->DbValue = $row['rekening'];
+		$this->id1->DbValue = $row['id1'];
+		$this->rekening1->DbValue = $row['rekening1'];
+		$this->id2->DbValue = $row['id2'];
+		$this->rekening2->DbValue = $row['rekening2'];
 		$this->tipe->DbValue = $row['tipe'];
 		$this->posisi->DbValue = $row['posisi'];
 		$this->laporan->DbValue = $row['laporan'];
 		$this->status->DbValue = $row['status'];
-		$this->parent->DbValue = $row['parent'];
 		$this->keterangan->DbValue = $row['keterangan'];
 		$this->active->DbValue = $row['active'];
 		$this->id->DbValue = $row['id'];
@@ -1764,14 +1800,16 @@ class cvrekening2_list extends cvrekening2 {
 
 		// Common render codes for all row types
 		// group
-		// id1
-		// id2
+		// parent
 		// rekening
+		// id1
+		// rekening1
+		// id2
+		// rekening2
 		// tipe
 		// posisi
 		// laporan
 		// status
-		// parent
 		// keterangan
 		// active
 		// id
@@ -1779,36 +1817,27 @@ class cvrekening2_list extends cvrekening2 {
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
 
 		// group
-		$this->group->ViewValue = $this->group->CurrentValue;
+		if (strval($this->group->CurrentValue) <> "") {
+			$sFilterWrk = "`group`" . ew_SearchString("=", $this->group->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `group`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening`";
+		$sWhereWrk = "";
+		$this->group->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->group, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->group->ViewValue = $this->group->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->group->ViewValue = $this->group->CurrentValue;
+			}
+		} else {
+			$this->group->ViewValue = NULL;
+		}
 		$this->group->ViewCustomAttributes = "";
-
-		// id1
-		$this->id1->ViewValue = $this->id1->CurrentValue;
-		$this->id1->ViewCustomAttributes = "";
-
-		// id2
-		$this->id2->ViewValue = $this->id2->CurrentValue;
-		$this->id2->ViewCustomAttributes = "";
-
-		// rekening
-		$this->rekening->ViewValue = $this->rekening->CurrentValue;
-		$this->rekening->ViewCustomAttributes = "";
-
-		// tipe
-		$this->tipe->ViewValue = $this->tipe->CurrentValue;
-		$this->tipe->ViewCustomAttributes = "";
-
-		// posisi
-		$this->posisi->ViewValue = $this->posisi->CurrentValue;
-		$this->posisi->ViewCustomAttributes = "";
-
-		// laporan
-		$this->laporan->ViewValue = $this->laporan->CurrentValue;
-		$this->laporan->ViewCustomAttributes = "";
-
-		// status
-		$this->status->ViewValue = $this->status->CurrentValue;
-		$this->status->ViewCustomAttributes = "";
 
 		// parent
 		if (strval($this->parent->CurrentValue) <> "") {
@@ -1832,6 +1861,64 @@ class cvrekening2_list extends cvrekening2 {
 			$this->parent->ViewValue = NULL;
 		}
 		$this->parent->ViewCustomAttributes = "";
+
+		// rekening
+		$this->rekening->ViewValue = $this->rekening->CurrentValue;
+		$this->rekening->ViewCustomAttributes = "";
+
+		// id1
+		$this->id1->ViewValue = $this->id1->CurrentValue;
+		$this->id1->ViewCustomAttributes = "";
+
+		// rekening1
+		$this->rekening1->ViewValue = $this->rekening1->CurrentValue;
+		$this->rekening1->ViewCustomAttributes = "";
+
+		// id2
+		$this->id2->ViewValue = $this->id2->CurrentValue;
+		$this->id2->ViewCustomAttributes = "";
+
+		// rekening2
+		$this->rekening2->ViewValue = $this->rekening2->CurrentValue;
+		$this->rekening2->ViewCustomAttributes = "";
+
+		// tipe
+		if (strval($this->tipe->CurrentValue) <> "") {
+			$this->tipe->ViewValue = $this->tipe->OptionCaption($this->tipe->CurrentValue);
+		} else {
+			$this->tipe->ViewValue = NULL;
+		}
+		$this->tipe->ViewCustomAttributes = "";
+
+		// posisi
+		if (strval($this->posisi->CurrentValue) <> "") {
+			$this->posisi->ViewValue = $this->posisi->OptionCaption($this->posisi->CurrentValue);
+		} else {
+			$this->posisi->ViewValue = NULL;
+		}
+		$this->posisi->ViewCustomAttributes = "";
+
+		// laporan
+		if (strval($this->laporan->CurrentValue) <> "") {
+			$this->laporan->ViewValue = $this->laporan->OptionCaption($this->laporan->CurrentValue);
+		} else {
+			$this->laporan->ViewValue = NULL;
+		}
+		$this->laporan->ViewCustomAttributes = "";
+
+		// status
+		if (strval($this->status->CurrentValue) <> "") {
+			$this->status->ViewValue = "";
+			$arwrk = explode(",", strval($this->status->CurrentValue));
+			$cnt = count($arwrk);
+			for ($ari = 0; $ari < $cnt; $ari++) {
+				$this->status->ViewValue .= $this->status->OptionCaption(trim($arwrk[$ari]));
+				if ($ari < $cnt-1) $this->status->ViewValue .= ew_ViewOptionSeparator($ari);
+			}
+		} else {
+			$this->status->ViewValue = NULL;
+		}
+		$this->status->ViewCustomAttributes = "";
 
 		// keterangan
 		$this->keterangan->ViewValue = $this->keterangan->CurrentValue;
@@ -1859,62 +1946,55 @@ class cvrekening2_list extends cvrekening2 {
 			$this->id1->HrefValue = "";
 			$this->id1->TooltipValue = "";
 
+			// rekening1
+			$this->rekening1->LinkCustomAttributes = "";
+			$this->rekening1->HrefValue = "";
+			$this->rekening1->TooltipValue = "";
+
 			// id2
 			$this->id2->LinkCustomAttributes = "";
 			$this->id2->HrefValue = "";
 			$this->id2->TooltipValue = "";
 
-			// rekening
-			$this->rekening->LinkCustomAttributes = "";
-			$this->rekening->HrefValue = "";
-			$this->rekening->TooltipValue = "";
+			// rekening2
+			$this->rekening2->LinkCustomAttributes = "";
+			$this->rekening2->HrefValue = "";
+			$this->rekening2->TooltipValue = "";
 
 			// tipe
 			$this->tipe->LinkCustomAttributes = "";
 			$this->tipe->HrefValue = "";
 			$this->tipe->TooltipValue = "";
 
-			// posisi
-			$this->posisi->LinkCustomAttributes = "";
-			$this->posisi->HrefValue = "";
-			$this->posisi->TooltipValue = "";
-
-			// laporan
-			$this->laporan->LinkCustomAttributes = "";
-			$this->laporan->HrefValue = "";
-			$this->laporan->TooltipValue = "";
-
 			// status
 			$this->status->LinkCustomAttributes = "";
 			$this->status->HrefValue = "";
 			$this->status->TooltipValue = "";
 
-			// parent
-			$this->parent->LinkCustomAttributes = "";
-			$this->parent->HrefValue = "";
-			$this->parent->TooltipValue = "";
-
 			// keterangan
 			$this->keterangan->LinkCustomAttributes = "";
 			$this->keterangan->HrefValue = "";
 			$this->keterangan->TooltipValue = "";
-
-			// active
-			$this->active->LinkCustomAttributes = "";
-			$this->active->HrefValue = "";
-			$this->active->TooltipValue = "";
-
-			// id
-			$this->id->LinkCustomAttributes = "";
-			$this->id->HrefValue = "";
-			$this->id->TooltipValue = "";
 		} elseif ($this->RowType == EW_ROWTYPE_SEARCH) { // Search row
 
 			// group
 			$this->group->EditAttrs["class"] = "form-control";
 			$this->group->EditCustomAttributes = "";
-			$this->group->EditValue = ew_HtmlEncode($this->group->AdvancedSearch->SearchValue);
-			$this->group->PlaceHolder = ew_RemoveHtml($this->group->FldCaption());
+			if (trim(strval($this->group->AdvancedSearch->SearchValue)) == "") {
+				$sFilterWrk = "0=1";
+			} else {
+				$sFilterWrk = "`group`" . ew_SearchString("=", $this->group->AdvancedSearch->SearchValue, EW_DATATYPE_NUMBER, "");
+			}
+			$sSqlWrk = "SELECT `group`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `trekening`";
+			$sWhereWrk = "";
+			$this->group->LookupFilters = array();
+			ew_AddFilter($sWhereWrk, $sFilterWrk);
+			$this->Lookup_Selecting($this->group, $sWhereWrk); // Call Lookup selecting
+			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
+			if ($rswrk) $rswrk->Close();
+			$this->group->EditValue = $arwrk;
 
 			// id1
 			$this->id1->EditAttrs["class"] = "form-control";
@@ -1922,61 +2002,37 @@ class cvrekening2_list extends cvrekening2 {
 			$this->id1->EditValue = ew_HtmlEncode($this->id1->AdvancedSearch->SearchValue);
 			$this->id1->PlaceHolder = ew_RemoveHtml($this->id1->FldCaption());
 
+			// rekening1
+			$this->rekening1->EditAttrs["class"] = "form-control";
+			$this->rekening1->EditCustomAttributes = "";
+			$this->rekening1->EditValue = ew_HtmlEncode($this->rekening1->AdvancedSearch->SearchValue);
+			$this->rekening1->PlaceHolder = ew_RemoveHtml($this->rekening1->FldCaption());
+
 			// id2
 			$this->id2->EditAttrs["class"] = "form-control";
 			$this->id2->EditCustomAttributes = "";
 			$this->id2->EditValue = ew_HtmlEncode($this->id2->AdvancedSearch->SearchValue);
 			$this->id2->PlaceHolder = ew_RemoveHtml($this->id2->FldCaption());
 
-			// rekening
-			$this->rekening->EditAttrs["class"] = "form-control";
-			$this->rekening->EditCustomAttributes = "";
-			$this->rekening->EditValue = ew_HtmlEncode($this->rekening->AdvancedSearch->SearchValue);
-			$this->rekening->PlaceHolder = ew_RemoveHtml($this->rekening->FldCaption());
+			// rekening2
+			$this->rekening2->EditAttrs["class"] = "form-control";
+			$this->rekening2->EditCustomAttributes = "";
+			$this->rekening2->EditValue = ew_HtmlEncode($this->rekening2->AdvancedSearch->SearchValue);
+			$this->rekening2->PlaceHolder = ew_RemoveHtml($this->rekening2->FldCaption());
 
 			// tipe
-			$this->tipe->EditAttrs["class"] = "form-control";
 			$this->tipe->EditCustomAttributes = "";
-			$this->tipe->EditValue = ew_HtmlEncode($this->tipe->AdvancedSearch->SearchValue);
-			$this->tipe->PlaceHolder = ew_RemoveHtml($this->tipe->FldCaption());
-
-			// posisi
-			$this->posisi->EditAttrs["class"] = "form-control";
-			$this->posisi->EditCustomAttributes = "";
-			$this->posisi->EditValue = ew_HtmlEncode($this->posisi->AdvancedSearch->SearchValue);
-			$this->posisi->PlaceHolder = ew_RemoveHtml($this->posisi->FldCaption());
-
-			// laporan
-			$this->laporan->EditAttrs["class"] = "form-control";
-			$this->laporan->EditCustomAttributes = "";
-			$this->laporan->EditValue = ew_HtmlEncode($this->laporan->AdvancedSearch->SearchValue);
-			$this->laporan->PlaceHolder = ew_RemoveHtml($this->laporan->FldCaption());
+			$this->tipe->EditValue = $this->tipe->Options(FALSE);
 
 			// status
-			$this->status->EditAttrs["class"] = "form-control";
 			$this->status->EditCustomAttributes = "";
-			$this->status->EditValue = ew_HtmlEncode($this->status->AdvancedSearch->SearchValue);
-			$this->status->PlaceHolder = ew_RemoveHtml($this->status->FldCaption());
-
-			// parent
-			$this->parent->EditAttrs["class"] = "form-control";
-			$this->parent->EditCustomAttributes = "";
+			$this->status->EditValue = $this->status->Options(FALSE);
 
 			// keterangan
 			$this->keterangan->EditAttrs["class"] = "form-control";
 			$this->keterangan->EditCustomAttributes = "";
 			$this->keterangan->EditValue = ew_HtmlEncode($this->keterangan->AdvancedSearch->SearchValue);
 			$this->keterangan->PlaceHolder = ew_RemoveHtml($this->keterangan->FldCaption());
-
-			// active
-			$this->active->EditCustomAttributes = "";
-			$this->active->EditValue = $this->active->Options(FALSE);
-
-			// id
-			$this->id->EditAttrs["class"] = "form-control";
-			$this->id->EditCustomAttributes = "";
-			$this->id->EditValue = ew_HtmlEncode($this->id->AdvancedSearch->SearchValue);
-			$this->id->PlaceHolder = ew_RemoveHtml($this->id->FldCaption());
 		}
 		if ($this->RowType == EW_ROWTYPE_ADD ||
 			$this->RowType == EW_ROWTYPE_EDIT ||
@@ -2015,14 +2071,16 @@ class cvrekening2_list extends cvrekening2 {
 	// Load advanced search
 	function LoadAdvancedSearch() {
 		$this->group->AdvancedSearch->Load();
-		$this->id1->AdvancedSearch->Load();
-		$this->id2->AdvancedSearch->Load();
+		$this->parent->AdvancedSearch->Load();
 		$this->rekening->AdvancedSearch->Load();
+		$this->id1->AdvancedSearch->Load();
+		$this->rekening1->AdvancedSearch->Load();
+		$this->id2->AdvancedSearch->Load();
+		$this->rekening2->AdvancedSearch->Load();
 		$this->tipe->AdvancedSearch->Load();
 		$this->posisi->AdvancedSearch->Load();
 		$this->laporan->AdvancedSearch->Load();
 		$this->status->AdvancedSearch->Load();
-		$this->parent->AdvancedSearch->Load();
 		$this->keterangan->AdvancedSearch->Load();
 		$this->active->AdvancedSearch->Load();
 		$this->id->AdvancedSearch->Load();
@@ -2046,6 +2104,18 @@ class cvrekening2_list extends cvrekening2 {
 			}
 		} elseif ($pageId == "extbs") {
 			switch ($fld->FldVar) {
+		case "x_group":
+			$sSqlWrk = "";
+			$sSqlWrk = "SELECT `group` AS `LinkFld`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening`";
+			$sWhereWrk = "";
+			$this->group->LookupFilters = array();
+			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => '`group` = {filter_value}', "t0" => "20", "fn0" => "");
+			$sSqlWrk = "";
+			$this->Lookup_Selecting($this->group, $sWhereWrk); // Call Lookup selecting
+			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			if ($sSqlWrk <> "")
+				$fld->LookupFilters["s"] .= $sSqlWrk;
+			break;
 			}
 		} 
 	}
@@ -2225,9 +2295,11 @@ fvrekening2list.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-fvrekening2list.Lists["x_parent"] = {"LinkField":"x_id","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening"};
-fvrekening2list.Lists["x_active"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
-fvrekening2list.Lists["x_active"].Options = <?php echo json_encode($vrekening2->active->Options()) ?>;
+fvrekening2list.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening"};
+fvrekening2list.Lists["x_tipe"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
+fvrekening2list.Lists["x_tipe"].Options = <?php echo json_encode($vrekening2->tipe->Options()) ?>;
+fvrekening2list.Lists["x_status[]"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
+fvrekening2list.Lists["x_status[]"].Options = <?php echo json_encode($vrekening2->status->Options()) ?>;
 
 // Form object for search
 var CurrentSearchForm = fvrekening2listsrch = new ew_Form("fvrekening2listsrch");
@@ -2261,8 +2333,7 @@ fvrekening2listsrch.ValidateRequired = false; // No JavaScript validation
 <?php } ?>
 
 // Dynamic selection lists
-fvrekening2listsrch.Lists["x_active"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
-fvrekening2listsrch.Lists["x_active"].Options = <?php echo json_encode($vrekening2->active->Options()) ?>;
+fvrekening2listsrch.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening"};
 </script>
 <script type="text/javascript">
 
@@ -2327,15 +2398,15 @@ $vrekening2->ResetAttrs();
 $vrekening2_list->RenderRow();
 ?>
 <div id="xsr_1" class="ewRow">
-<?php if ($vrekening2->active->Visible) { // active ?>
-	<div id="xsc_active" class="ewCell form-group">
-		<label class="ewSearchCaption ewLabel"><?php echo $vrekening2->active->FldCaption() ?></label>
-		<span class="ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_active" id="z_active" value="="></span>
+<?php if ($vrekening2->group->Visible) { // group ?>
+	<div id="xsc_group" class="ewCell form-group">
+		<label for="x_group" class="ewSearchCaption ewLabel"><?php echo $vrekening2->group->FldCaption() ?></label>
+		<span class="ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_group" id="z_group" value="="></span>
 		<span class="ewSearchField">
-<div id="tp_x_active" class="ewTemplate"><input type="radio" data-table="vrekening2" data-field="x_active" data-value-separator="<?php echo $vrekening2->active->DisplayValueSeparatorAttribute() ?>" name="x_active" id="x_active" value="{value}"<?php echo $vrekening2->active->EditAttributes() ?>></div>
-<div id="dsl_x_active" data-repeatcolumn="5" class="ewItemList" style="display: none;"><div>
-<?php echo $vrekening2->active->RadioButtonListHtml(FALSE, "x_active") ?>
-</div></div>
+<select data-table="vrekening2" data-field="x_group" data-value-separator="<?php echo $vrekening2->group->DisplayValueSeparatorAttribute() ?>" id="x_group" name="x_group"<?php echo $vrekening2->group->EditAttributes() ?>>
+<?php echo $vrekening2->group->SelectOptionListHtml("x_group") ?>
+</select>
+<input type="hidden" name="s_x_group" id="s_x_group" value="<?php echo $vrekening2->group->LookupFilterQuery(false, "extbs") ?>">
 </span>
 	</div>
 <?php } ?>
@@ -2406,6 +2477,15 @@ $vrekening2_list->ListOptions->Render("header", "left");
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
+<?php if ($vrekening2->rekening1->Visible) { // rekening1 ?>
+	<?php if ($vrekening2->SortUrl($vrekening2->rekening1) == "") { ?>
+		<th data-name="rekening1"><div id="elh_vrekening2_rekening1" class="vrekening2_rekening1"><div class="ewTableHeaderCaption"><?php echo $vrekening2->rekening1->FldCaption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="rekening1"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->rekening1) ?>',1);"><div id="elh_vrekening2_rekening1" class="vrekening2_rekening1">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->rekening1->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->rekening1->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->rekening1->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+        </div></div></th>
+	<?php } ?>
+<?php } ?>		
 <?php if ($vrekening2->id2->Visible) { // id2 ?>
 	<?php if ($vrekening2->SortUrl($vrekening2->id2) == "") { ?>
 		<th data-name="id2"><div id="elh_vrekening2_id2" class="vrekening2_id2"><div class="ewTableHeaderCaption"><?php echo $vrekening2->id2->FldCaption() ?></div></div></th>
@@ -2415,12 +2495,12 @@ $vrekening2_list->ListOptions->Render("header", "left");
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($vrekening2->rekening->Visible) { // rekening ?>
-	<?php if ($vrekening2->SortUrl($vrekening2->rekening) == "") { ?>
-		<th data-name="rekening"><div id="elh_vrekening2_rekening" class="vrekening2_rekening"><div class="ewTableHeaderCaption"><?php echo $vrekening2->rekening->FldCaption() ?></div></div></th>
+<?php if ($vrekening2->rekening2->Visible) { // rekening2 ?>
+	<?php if ($vrekening2->SortUrl($vrekening2->rekening2) == "") { ?>
+		<th data-name="rekening2"><div id="elh_vrekening2_rekening2" class="vrekening2_rekening2"><div class="ewTableHeaderCaption"><?php echo $vrekening2->rekening2->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="rekening"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->rekening) ?>',1);"><div id="elh_vrekening2_rekening" class="vrekening2_rekening">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->rekening->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->rekening->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->rekening->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="rekening2"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->rekening2) ?>',1);"><div id="elh_vrekening2_rekening2" class="vrekening2_rekening2">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->rekening2->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->rekening2->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->rekening2->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2429,25 +2509,7 @@ $vrekening2_list->ListOptions->Render("header", "left");
 		<th data-name="tipe"><div id="elh_vrekening2_tipe" class="vrekening2_tipe"><div class="ewTableHeaderCaption"><?php echo $vrekening2->tipe->FldCaption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="tipe"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->tipe) ?>',1);"><div id="elh_vrekening2_tipe" class="vrekening2_tipe">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->tipe->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->tipe->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->tipe->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
-        </div></div></th>
-	<?php } ?>
-<?php } ?>		
-<?php if ($vrekening2->posisi->Visible) { // posisi ?>
-	<?php if ($vrekening2->SortUrl($vrekening2->posisi) == "") { ?>
-		<th data-name="posisi"><div id="elh_vrekening2_posisi" class="vrekening2_posisi"><div class="ewTableHeaderCaption"><?php echo $vrekening2->posisi->FldCaption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="posisi"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->posisi) ?>',1);"><div id="elh_vrekening2_posisi" class="vrekening2_posisi">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->posisi->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->posisi->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->posisi->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
-        </div></div></th>
-	<?php } ?>
-<?php } ?>		
-<?php if ($vrekening2->laporan->Visible) { // laporan ?>
-	<?php if ($vrekening2->SortUrl($vrekening2->laporan) == "") { ?>
-		<th data-name="laporan"><div id="elh_vrekening2_laporan" class="vrekening2_laporan"><div class="ewTableHeaderCaption"><?php echo $vrekening2->laporan->FldCaption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="laporan"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->laporan) ?>',1);"><div id="elh_vrekening2_laporan" class="vrekening2_laporan">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->laporan->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->laporan->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->laporan->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->tipe->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->tipe->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->tipe->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2456,16 +2518,7 @@ $vrekening2_list->ListOptions->Render("header", "left");
 		<th data-name="status"><div id="elh_vrekening2_status" class="vrekening2_status"><div class="ewTableHeaderCaption"><?php echo $vrekening2->status->FldCaption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="status"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->status) ?>',1);"><div id="elh_vrekening2_status" class="vrekening2_status">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->status->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->status->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->status->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
-        </div></div></th>
-	<?php } ?>
-<?php } ?>		
-<?php if ($vrekening2->parent->Visible) { // parent ?>
-	<?php if ($vrekening2->SortUrl($vrekening2->parent) == "") { ?>
-		<th data-name="parent"><div id="elh_vrekening2_parent" class="vrekening2_parent"><div class="ewTableHeaderCaption"><?php echo $vrekening2->parent->FldCaption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="parent"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->parent) ?>',1);"><div id="elh_vrekening2_parent" class="vrekening2_parent">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->parent->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->parent->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->parent->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->status->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->status->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->status->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2475,24 +2528,6 @@ $vrekening2_list->ListOptions->Render("header", "left");
 	<?php } else { ?>
 		<th data-name="keterangan"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->keterangan) ?>',1);"><div id="elh_vrekening2_keterangan" class="vrekening2_keterangan">
 			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->keterangan->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->keterangan->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->keterangan->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
-        </div></div></th>
-	<?php } ?>
-<?php } ?>		
-<?php if ($vrekening2->active->Visible) { // active ?>
-	<?php if ($vrekening2->SortUrl($vrekening2->active) == "") { ?>
-		<th data-name="active"><div id="elh_vrekening2_active" class="vrekening2_active"><div class="ewTableHeaderCaption"><?php echo $vrekening2->active->FldCaption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="active"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->active) ?>',1);"><div id="elh_vrekening2_active" class="vrekening2_active">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->active->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->active->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->active->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
-        </div></div></th>
-	<?php } ?>
-<?php } ?>		
-<?php if ($vrekening2->id->Visible) { // id ?>
-	<?php if ($vrekening2->SortUrl($vrekening2->id) == "") { ?>
-		<th data-name="id"><div id="elh_vrekening2_id" class="vrekening2_id"><div class="ewTableHeaderCaption"><?php echo $vrekening2->id->FldCaption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="id"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $vrekening2->SortUrl($vrekening2->id) ?>',1);"><div id="elh_vrekening2_id" class="vrekening2_id">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $vrekening2->id->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($vrekening2->id->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($vrekening2->id->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2577,6 +2612,14 @@ $vrekening2_list->ListOptions->Render("body", "left", $vrekening2_list->RowCnt);
 </span>
 </td>
 	<?php } ?>
+	<?php if ($vrekening2->rekening1->Visible) { // rekening1 ?>
+		<td data-name="rekening1"<?php echo $vrekening2->rekening1->CellAttributes() ?>>
+<span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_rekening1" class="vrekening2_rekening1">
+<span<?php echo $vrekening2->rekening1->ViewAttributes() ?>>
+<?php echo $vrekening2->rekening1->ListViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($vrekening2->id2->Visible) { // id2 ?>
 		<td data-name="id2"<?php echo $vrekening2->id2->CellAttributes() ?>>
 <span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_id2" class="vrekening2_id2">
@@ -2585,11 +2628,11 @@ $vrekening2_list->ListOptions->Render("body", "left", $vrekening2_list->RowCnt);
 </span>
 </td>
 	<?php } ?>
-	<?php if ($vrekening2->rekening->Visible) { // rekening ?>
-		<td data-name="rekening"<?php echo $vrekening2->rekening->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_rekening" class="vrekening2_rekening">
-<span<?php echo $vrekening2->rekening->ViewAttributes() ?>>
-<?php echo $vrekening2->rekening->ListViewValue() ?></span>
+	<?php if ($vrekening2->rekening2->Visible) { // rekening2 ?>
+		<td data-name="rekening2"<?php echo $vrekening2->rekening2->CellAttributes() ?>>
+<span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_rekening2" class="vrekening2_rekening2">
+<span<?php echo $vrekening2->rekening2->ViewAttributes() ?>>
+<?php echo $vrekening2->rekening2->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
@@ -2601,22 +2644,6 @@ $vrekening2_list->ListOptions->Render("body", "left", $vrekening2_list->RowCnt);
 </span>
 </td>
 	<?php } ?>
-	<?php if ($vrekening2->posisi->Visible) { // posisi ?>
-		<td data-name="posisi"<?php echo $vrekening2->posisi->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_posisi" class="vrekening2_posisi">
-<span<?php echo $vrekening2->posisi->ViewAttributes() ?>>
-<?php echo $vrekening2->posisi->ListViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($vrekening2->laporan->Visible) { // laporan ?>
-		<td data-name="laporan"<?php echo $vrekening2->laporan->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_laporan" class="vrekening2_laporan">
-<span<?php echo $vrekening2->laporan->ViewAttributes() ?>>
-<?php echo $vrekening2->laporan->ListViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($vrekening2->status->Visible) { // status ?>
 		<td data-name="status"<?php echo $vrekening2->status->CellAttributes() ?>>
 <span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_status" class="vrekening2_status">
@@ -2625,35 +2652,11 @@ $vrekening2_list->ListOptions->Render("body", "left", $vrekening2_list->RowCnt);
 </span>
 </td>
 	<?php } ?>
-	<?php if ($vrekening2->parent->Visible) { // parent ?>
-		<td data-name="parent"<?php echo $vrekening2->parent->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_parent" class="vrekening2_parent">
-<span<?php echo $vrekening2->parent->ViewAttributes() ?>>
-<?php echo $vrekening2->parent->ListViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($vrekening2->keterangan->Visible) { // keterangan ?>
 		<td data-name="keterangan"<?php echo $vrekening2->keterangan->CellAttributes() ?>>
 <span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_keterangan" class="vrekening2_keterangan">
 <span<?php echo $vrekening2->keterangan->ViewAttributes() ?>>
 <?php echo $vrekening2->keterangan->ListViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($vrekening2->active->Visible) { // active ?>
-		<td data-name="active"<?php echo $vrekening2->active->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_active" class="vrekening2_active">
-<span<?php echo $vrekening2->active->ViewAttributes() ?>>
-<?php echo $vrekening2->active->ListViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($vrekening2->id->Visible) { // id ?>
-		<td data-name="id"<?php echo $vrekening2->id->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_list->RowCnt ?>_vrekening2_id" class="vrekening2_id">
-<span<?php echo $vrekening2->id->ViewAttributes() ?>>
-<?php echo $vrekening2->id->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

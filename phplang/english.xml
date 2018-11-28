@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2018/11/27" version="13.0.0" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2018/11/28" version="13.0.0" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!-- 
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -582,6 +582,12 @@
   </global>
   <project>
     <phrase id="footertext" value="&amp;copy;2016 e.World Technology Ltd. All rights reserved." />
+    <menu id="10022">
+      <phrase id="menutext" value="trekening 2" />
+    </menu>
+    <menu id="21">
+      <phrase id="menutext" value="Report 1" />
+    </menu>
     <menu id="1">
       <phrase id="menutext" value="tanggota" />
     </menu>
@@ -641,6 +647,69 @@
     </menu>
     <menu id="20">
       <phrase id="menutext" value="vrekening 2" />
+    </menu>
+    <menu id="10021">
+      <phrase id="menutext" value="Report 1" />
+    </menu>
+    <menu id="10001">
+      <phrase id="menutext" value="tanggota" />
+    </menu>
+    <menu id="10002">
+      <phrase id="menutext" value="tbayarangsuran" />
+    </menu>
+    <menu id="10003">
+      <phrase id="menutext" value="tbayartitipan" />
+    </menu>
+    <menu id="10004">
+      <phrase id="menutext" value="tbayartitipansaldo" />
+    </menu>
+    <menu id="10005">
+      <phrase id="menutext" value="texcel" />
+    </menu>
+    <menu id="10006">
+      <phrase id="menutext" value="texcelsheet" />
+    </menu>
+    <menu id="10007">
+      <phrase id="menutext" value="tjurnal" />
+    </menu>
+    <menu id="10008">
+      <phrase id="menutext" value="tjurnalkasbank" />
+    </menu>
+    <menu id="10009">
+      <phrase id="menutext" value="tjurnalsaldo" />
+    </menu>
+    <menu id="10010">
+      <phrase id="menutext" value="tjurnaltransaksi" />
+    </menu>
+    <menu id="10011">
+      <phrase id="menutext" value="tkantor" />
+    </menu>
+    <menu id="10012">
+      <phrase id="menutext" value="tlaporan" />
+    </menu>
+    <menu id="10013">
+      <phrase id="menutext" value="tpinjaman" />
+    </menu>
+    <menu id="10014">
+      <phrase id="menutext" value="tpinjamandetail" />
+    </menu>
+    <menu id="10015">
+      <phrase id="menutext" value="tpinjamandetail " />
+    </menu>
+    <menu id="10016">
+      <phrase id="menutext" value="trekening" />
+    </menu>
+    <menu id="10017">
+      <phrase id="menutext" value="tuser" />
+    </menu>
+    <menu id="10018">
+      <phrase id="menutext" value="vrekening" />
+    </menu>
+    <menu id="10019">
+      <phrase id="menutext" value="vrekening 2" />
+    </menu>
+    <menu id="10020">
+      <phrase id="menutext" value="vrekeninggroup" />
     </menu>
     <table id="tanggota">
       <phrase id="tblcaption" value="tanggota" />
@@ -2122,16 +2191,160 @@
     <table id="vrekening2">
       <phrase id="tblcaption" value="vrekening 2" />
       <field id="group">
-        <phrase id="fldcaption" value="group" />
+        <phrase id="fldcaption" value="Group" />
+      </field>
+      <field id="parent">
+        <phrase id="fldcaption" value="Header" />
+      </field>
+      <field id="rekening">
+        <phrase id="fldcaption" value="Nama Rekening" />
       </field>
       <field id="id1">
-        <phrase id="fldcaption" value="id 1" />
+        <phrase id="fldcaption" value="Kode (HEADER)" />
+      </field>
+      <field id="rekening1">
+        <phrase id="fldcaption" value="Nama Rekening" />
       </field>
       <field id="id2">
-        <phrase id="fldcaption" value="id 2" />
+        <phrase id="fldcaption" value="Kode (DETAIL)" />
+      </field>
+      <field id="rekening2">
+        <phrase id="fldcaption" value="Nama Rekening" />
+      </field>
+      <field id="tipe">
+        <phrase id="fldcaption" value="Tipe" />
+        <phrase id="fldtagvalue1" value="HEADER" />
+        <phrase id="fldtagcaption1" value="HEADER" />
+        <phrase id="fldtagvalue2" value="DETAIL" />
+        <phrase id="fldtagcaption2" value="DETAIL" />
+      </field>
+      <field id="posisi">
+        <phrase id="fldcaption" value="Posisi" />
+        <phrase id="fldtagvalue1" value="DEBET" />
+        <phrase id="fldtagcaption1" value="DEBET" />
+        <phrase id="fldtagvalue2" value="CREDIT" />
+        <phrase id="fldtagcaption2" value="CREDIT" />
+      </field>
+      <field id="laporan">
+        <phrase id="fldcaption" value="Laporan" />
+        <phrase id="fldtagvalue1" value="NERACA" />
+        <phrase id="fldtagcaption1" value="NERACA" />
+        <phrase id="fldtagvalue2" value="RUGI LABA" />
+        <phrase id="fldtagcaption2" value="RUGI LABA" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Status" />
+        <phrase id="fldtagvalue1" value="KAS/BANK" />
+        <phrase id="fldtagcaption1" value="KAS/BANK" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="active">
+        <phrase id="fldcaption" value="active" />
+        <phrase id="fldtagvalue1" value="yes" />
+        <phrase id="fldtagcaption1" value="yes" />
+        <phrase id="fldtagvalue2" value="no" />
+        <phrase id="fldtagcaption2" value="no" />
+      </field>
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+    </table>
+    <table id="report1">
+      <phrase id="tblcaption" value="Report 1" />
+      <field id="group">
+        <phrase id="fldcaption" value="Group" />
+      </field>
+      <field id="parent">
+        <phrase id="fldcaption" value="Header" />
+      </field>
+      <field id="rekening">
+        <phrase id="fldcaption" value="Nama Rekening" />
+      </field>
+      <field id="id1">
+        <phrase id="fldcaption" value="Kode (HEADER)" />
+      </field>
+      <field id="rekening1">
+        <phrase id="fldcaption" value="Nama Rekening" />
+      </field>
+      <field id="id2">
+        <phrase id="fldcaption" value="Kode (DETAIL)" />
+      </field>
+      <field id="rekening2">
+        <phrase id="fldcaption" value="Nama Rekening" />
+      </field>
+      <field id="tipe">
+        <phrase id="fldcaption" value="Tipe" />
+        <phrase id="fldtagvalue1" value="HEADER" />
+        <phrase id="fldtagcaption1" value="HEADER" />
+        <phrase id="fldtagvalue2" value="DETAIL" />
+        <phrase id="fldtagcaption2" value="DETAIL" />
+      </field>
+      <field id="posisi">
+        <phrase id="fldcaption" value="Posisi" />
+        <phrase id="fldtagvalue1" value="DEBET" />
+        <phrase id="fldtagcaption1" value="DEBET" />
+        <phrase id="fldtagvalue2" value="CREDIT" />
+        <phrase id="fldtagcaption2" value="CREDIT" />
+      </field>
+      <field id="laporan">
+        <phrase id="fldcaption" value="Laporan" />
+        <phrase id="fldtagvalue1" value="NERACA" />
+        <phrase id="fldtagcaption1" value="NERACA" />
+        <phrase id="fldtagvalue2" value="RUGI LABA" />
+        <phrase id="fldtagcaption2" value="RUGI LABA" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Status" />
+        <phrase id="fldtagvalue1" value="KAS/BANK" />
+        <phrase id="fldtagcaption1" value="KAS/BANK" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="active">
+        <phrase id="fldcaption" value="active" />
+        <phrase id="fldtagvalue1" value="yes" />
+        <phrase id="fldtagcaption1" value="yes" />
+        <phrase id="fldtagvalue2" value="no" />
+        <phrase id="fldtagcaption2" value="no" />
+      </field>
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+    </table>
+    <table id="trekening2">
+      <phrase id="tblcaption" value="trekening 2" />
+      <field id="group">
+        <phrase id="fldcaption" value="group" />
+      </field>
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
       </field>
       <field id="rekening">
         <phrase id="fldcaption" value="rekening" />
+      </field>
+      <field id="parent">
+        <phrase id="fldcaption" value="parent" />
+      </field>
+      <field id="parent1">
+        <phrase id="fldcaption" value="parent1" />
+      </field>
+      <field id="id1">
+        <phrase id="fldcaption" value="id1" />
+      </field>
+      <field id="rekening1">
+        <phrase id="fldcaption" value="rekening1" />
+      </field>
+      <field id="parent2">
+        <phrase id="fldcaption" value="parent2" />
+      </field>
+      <field id="id2">
+        <phrase id="fldcaption" value="id2" />
+      </field>
+      <field id="rekening2">
+        <phrase id="fldcaption" value="rekening2" />
       </field>
       <field id="tipe">
         <phrase id="fldcaption" value="tipe" />
@@ -2145,9 +2358,6 @@
       <field id="status">
         <phrase id="fldcaption" value="status" />
       </field>
-      <field id="parent">
-        <phrase id="fldcaption" value="parent" />
-      </field>
       <field id="keterangan">
         <phrase id="fldcaption" value="keterangan" />
       </field>
@@ -2157,9 +2367,6 @@
         <phrase id="fldtagcaption1" value="yes" />
         <phrase id="fldtagvalue2" value="no" />
         <phrase id="fldtagcaption2" value="no" />
-      </field>
-      <field id="id">
-        <phrase id="fldcaption" value="id" />
       </field>
     </table>
   </project>

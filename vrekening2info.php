@@ -8,14 +8,16 @@ $vrekening2 = NULL;
 //
 class cvrekening2 extends cTable {
 	var $group;
-	var $id1;
-	var $id2;
+	var $parent;
 	var $rekening;
+	var $id1;
+	var $rekening1;
+	var $id2;
+	var $rekening2;
 	var $tipe;
 	var $posisi;
 	var $laporan;
 	var $status;
-	var $parent;
 	var $keterangan;
 	var $active;
 	var $id;
@@ -51,45 +53,12 @@ class cvrekening2 extends cTable {
 		$this->BasicSearch = new cBasicSearch($this->TableVar);
 
 		// group
-		$this->group = new cField('vrekening2', 'vrekening2', 'x_group', 'group', '`group`', '`group`', 20, -1, FALSE, '`group`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->group = new cField('vrekening2', 'vrekening2', 'x_group', 'group', '`group`', '`group`', 20, -1, FALSE, '`group`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
 		$this->group->Sortable = TRUE; // Allow sort
+		$this->group->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->group->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
 		$this->group->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
 		$this->fields['group'] = &$this->group;
-
-		// id1
-		$this->id1 = new cField('vrekening2', 'vrekening2', 'x_id1', 'id1', '`id1`', '`id1`', 200, -1, FALSE, '`id1`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->id1->Sortable = TRUE; // Allow sort
-		$this->fields['id1'] = &$this->id1;
-
-		// id2
-		$this->id2 = new cField('vrekening2', 'vrekening2', 'x_id2', 'id2', '`id2`', '`id2`', 200, -1, FALSE, '`id2`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->id2->Sortable = TRUE; // Allow sort
-		$this->fields['id2'] = &$this->id2;
-
-		// rekening
-		$this->rekening = new cField('vrekening2', 'vrekening2', 'x_rekening', 'rekening', '`rekening`', '`rekening`', 200, -1, FALSE, '`rekening`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->rekening->Sortable = TRUE; // Allow sort
-		$this->fields['rekening'] = &$this->rekening;
-
-		// tipe
-		$this->tipe = new cField('vrekening2', 'vrekening2', 'x_tipe', 'tipe', '`tipe`', '`tipe`', 200, -1, FALSE, '`tipe`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->tipe->Sortable = TRUE; // Allow sort
-		$this->fields['tipe'] = &$this->tipe;
-
-		// posisi
-		$this->posisi = new cField('vrekening2', 'vrekening2', 'x_posisi', 'posisi', '`posisi`', '`posisi`', 200, -1, FALSE, '`posisi`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->posisi->Sortable = TRUE; // Allow sort
-		$this->fields['posisi'] = &$this->posisi;
-
-		// laporan
-		$this->laporan = new cField('vrekening2', 'vrekening2', 'x_laporan', 'laporan', '`laporan`', '`laporan`', 200, -1, FALSE, '`laporan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->laporan->Sortable = TRUE; // Allow sort
-		$this->fields['laporan'] = &$this->laporan;
-
-		// status
-		$this->status = new cField('vrekening2', 'vrekening2', 'x_status', 'status', '`status`', '`status`', 200, -1, FALSE, '`status`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->status->Sortable = TRUE; // Allow sort
-		$this->fields['status'] = &$this->status;
 
 		// parent
 		$this->parent = new cField('vrekening2', 'vrekening2', 'x_parent', 'parent', '`parent`', '`parent`', 200, -1, FALSE, '`parent`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
@@ -97,6 +66,55 @@ class cvrekening2 extends cTable {
 		$this->parent->UsePleaseSelect = TRUE; // Use PleaseSelect by default
 		$this->parent->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
 		$this->fields['parent'] = &$this->parent;
+
+		// rekening
+		$this->rekening = new cField('vrekening2', 'vrekening2', 'x_rekening', 'rekening', '`rekening`', '`rekening`', 200, -1, FALSE, '`rekening`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->rekening->Sortable = TRUE; // Allow sort
+		$this->fields['rekening'] = &$this->rekening;
+
+		// id1
+		$this->id1 = new cField('vrekening2', 'vrekening2', 'x_id1', 'id1', '`id1`', '`id1`', 200, -1, FALSE, '`id1`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->id1->Sortable = TRUE; // Allow sort
+		$this->fields['id1'] = &$this->id1;
+
+		// rekening1
+		$this->rekening1 = new cField('vrekening2', 'vrekening2', 'x_rekening1', 'rekening1', '`rekening1`', '`rekening1`', 200, -1, FALSE, '`rekening1`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->rekening1->Sortable = TRUE; // Allow sort
+		$this->fields['rekening1'] = &$this->rekening1;
+
+		// id2
+		$this->id2 = new cField('vrekening2', 'vrekening2', 'x_id2', 'id2', '`id2`', '`id2`', 200, -1, FALSE, '`id2`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->id2->Sortable = TRUE; // Allow sort
+		$this->fields['id2'] = &$this->id2;
+
+		// rekening2
+		$this->rekening2 = new cField('vrekening2', 'vrekening2', 'x_rekening2', 'rekening2', '`rekening2`', '`rekening2`', 200, -1, FALSE, '`rekening2`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->rekening2->Sortable = TRUE; // Allow sort
+		$this->fields['rekening2'] = &$this->rekening2;
+
+		// tipe
+		$this->tipe = new cField('vrekening2', 'vrekening2', 'x_tipe', 'tipe', '`tipe`', '`tipe`', 200, -1, FALSE, '`tipe`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'RADIO');
+		$this->tipe->Sortable = TRUE; // Allow sort
+		$this->tipe->OptionCount = 2;
+		$this->fields['tipe'] = &$this->tipe;
+
+		// posisi
+		$this->posisi = new cField('vrekening2', 'vrekening2', 'x_posisi', 'posisi', '`posisi`', '`posisi`', 200, -1, FALSE, '`posisi`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'RADIO');
+		$this->posisi->Sortable = TRUE; // Allow sort
+		$this->posisi->OptionCount = 2;
+		$this->fields['posisi'] = &$this->posisi;
+
+		// laporan
+		$this->laporan = new cField('vrekening2', 'vrekening2', 'x_laporan', 'laporan', '`laporan`', '`laporan`', 200, -1, FALSE, '`laporan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'RADIO');
+		$this->laporan->Sortable = TRUE; // Allow sort
+		$this->laporan->OptionCount = 2;
+		$this->fields['laporan'] = &$this->laporan;
+
+		// status
+		$this->status = new cField('vrekening2', 'vrekening2', 'x_status', 'status', '`status`', '`status`', 200, -1, FALSE, '`status`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'CHECKBOX');
+		$this->status->Sortable = TRUE; // Allow sort
+		$this->status->OptionCount = 1;
+		$this->fields['status'] = &$this->status;
 
 		// keterangan
 		$this->keterangan = new cField('vrekening2', 'vrekening2', 'x_keterangan', 'keterangan', '`keterangan`', '`keterangan`', 200, -1, FALSE, '`keterangan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -597,14 +615,16 @@ class cvrekening2 extends cTable {
 	// Load row values from recordset
 	function LoadListRowValues(&$rs) {
 		$this->group->setDbValue($rs->fields('group'));
-		$this->id1->setDbValue($rs->fields('id1'));
-		$this->id2->setDbValue($rs->fields('id2'));
+		$this->parent->setDbValue($rs->fields('parent'));
 		$this->rekening->setDbValue($rs->fields('rekening'));
+		$this->id1->setDbValue($rs->fields('id1'));
+		$this->rekening1->setDbValue($rs->fields('rekening1'));
+		$this->id2->setDbValue($rs->fields('id2'));
+		$this->rekening2->setDbValue($rs->fields('rekening2'));
 		$this->tipe->setDbValue($rs->fields('tipe'));
 		$this->posisi->setDbValue($rs->fields('posisi'));
 		$this->laporan->setDbValue($rs->fields('laporan'));
 		$this->status->setDbValue($rs->fields('status'));
-		$this->parent->setDbValue($rs->fields('parent'));
 		$this->keterangan->setDbValue($rs->fields('keterangan'));
 		$this->active->setDbValue($rs->fields('active'));
 		$this->id->setDbValue($rs->fields('id'));
@@ -619,49 +639,42 @@ class cvrekening2 extends cTable {
 
    // Common render codes
 		// group
-		// id1
-		// id2
+		// parent
 		// rekening
+		// id1
+		// rekening1
+		// id2
+		// rekening2
 		// tipe
 		// posisi
 		// laporan
 		// status
-		// parent
 		// keterangan
 		// active
 		// id
 		// group
 
-		$this->group->ViewValue = $this->group->CurrentValue;
+		if (strval($this->group->CurrentValue) <> "") {
+			$sFilterWrk = "`group`" . ew_SearchString("=", $this->group->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `group`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening`";
+		$sWhereWrk = "";
+		$this->group->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->group, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->group->ViewValue = $this->group->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->group->ViewValue = $this->group->CurrentValue;
+			}
+		} else {
+			$this->group->ViewValue = NULL;
+		}
 		$this->group->ViewCustomAttributes = "";
-
-		// id1
-		$this->id1->ViewValue = $this->id1->CurrentValue;
-		$this->id1->ViewCustomAttributes = "";
-
-		// id2
-		$this->id2->ViewValue = $this->id2->CurrentValue;
-		$this->id2->ViewCustomAttributes = "";
-
-		// rekening
-		$this->rekening->ViewValue = $this->rekening->CurrentValue;
-		$this->rekening->ViewCustomAttributes = "";
-
-		// tipe
-		$this->tipe->ViewValue = $this->tipe->CurrentValue;
-		$this->tipe->ViewCustomAttributes = "";
-
-		// posisi
-		$this->posisi->ViewValue = $this->posisi->CurrentValue;
-		$this->posisi->ViewCustomAttributes = "";
-
-		// laporan
-		$this->laporan->ViewValue = $this->laporan->CurrentValue;
-		$this->laporan->ViewCustomAttributes = "";
-
-		// status
-		$this->status->ViewValue = $this->status->CurrentValue;
-		$this->status->ViewCustomAttributes = "";
 
 		// parent
 		if (strval($this->parent->CurrentValue) <> "") {
@@ -686,6 +699,64 @@ class cvrekening2 extends cTable {
 		}
 		$this->parent->ViewCustomAttributes = "";
 
+		// rekening
+		$this->rekening->ViewValue = $this->rekening->CurrentValue;
+		$this->rekening->ViewCustomAttributes = "";
+
+		// id1
+		$this->id1->ViewValue = $this->id1->CurrentValue;
+		$this->id1->ViewCustomAttributes = "";
+
+		// rekening1
+		$this->rekening1->ViewValue = $this->rekening1->CurrentValue;
+		$this->rekening1->ViewCustomAttributes = "";
+
+		// id2
+		$this->id2->ViewValue = $this->id2->CurrentValue;
+		$this->id2->ViewCustomAttributes = "";
+
+		// rekening2
+		$this->rekening2->ViewValue = $this->rekening2->CurrentValue;
+		$this->rekening2->ViewCustomAttributes = "";
+
+		// tipe
+		if (strval($this->tipe->CurrentValue) <> "") {
+			$this->tipe->ViewValue = $this->tipe->OptionCaption($this->tipe->CurrentValue);
+		} else {
+			$this->tipe->ViewValue = NULL;
+		}
+		$this->tipe->ViewCustomAttributes = "";
+
+		// posisi
+		if (strval($this->posisi->CurrentValue) <> "") {
+			$this->posisi->ViewValue = $this->posisi->OptionCaption($this->posisi->CurrentValue);
+		} else {
+			$this->posisi->ViewValue = NULL;
+		}
+		$this->posisi->ViewCustomAttributes = "";
+
+		// laporan
+		if (strval($this->laporan->CurrentValue) <> "") {
+			$this->laporan->ViewValue = $this->laporan->OptionCaption($this->laporan->CurrentValue);
+		} else {
+			$this->laporan->ViewValue = NULL;
+		}
+		$this->laporan->ViewCustomAttributes = "";
+
+		// status
+		if (strval($this->status->CurrentValue) <> "") {
+			$this->status->ViewValue = "";
+			$arwrk = explode(",", strval($this->status->CurrentValue));
+			$cnt = count($arwrk);
+			for ($ari = 0; $ari < $cnt; $ari++) {
+				$this->status->ViewValue .= $this->status->OptionCaption(trim($arwrk[$ari]));
+				if ($ari < $cnt-1) $this->status->ViewValue .= ew_ViewOptionSeparator($ari);
+			}
+		} else {
+			$this->status->ViewValue = NULL;
+		}
+		$this->status->ViewCustomAttributes = "";
+
 		// keterangan
 		$this->keterangan->ViewValue = $this->keterangan->CurrentValue;
 		$this->keterangan->ViewCustomAttributes = "";
@@ -707,20 +778,35 @@ class cvrekening2 extends cTable {
 		$this->group->HrefValue = "";
 		$this->group->TooltipValue = "";
 
+		// parent
+		$this->parent->LinkCustomAttributes = "";
+		$this->parent->HrefValue = "";
+		$this->parent->TooltipValue = "";
+
+		// rekening
+		$this->rekening->LinkCustomAttributes = "";
+		$this->rekening->HrefValue = "";
+		$this->rekening->TooltipValue = "";
+
 		// id1
 		$this->id1->LinkCustomAttributes = "";
 		$this->id1->HrefValue = "";
 		$this->id1->TooltipValue = "";
+
+		// rekening1
+		$this->rekening1->LinkCustomAttributes = "";
+		$this->rekening1->HrefValue = "";
+		$this->rekening1->TooltipValue = "";
 
 		// id2
 		$this->id2->LinkCustomAttributes = "";
 		$this->id2->HrefValue = "";
 		$this->id2->TooltipValue = "";
 
-		// rekening
-		$this->rekening->LinkCustomAttributes = "";
-		$this->rekening->HrefValue = "";
-		$this->rekening->TooltipValue = "";
+		// rekening2
+		$this->rekening2->LinkCustomAttributes = "";
+		$this->rekening2->HrefValue = "";
+		$this->rekening2->TooltipValue = "";
 
 		// tipe
 		$this->tipe->LinkCustomAttributes = "";
@@ -741,11 +827,6 @@ class cvrekening2 extends cTable {
 		$this->status->LinkCustomAttributes = "";
 		$this->status->HrefValue = "";
 		$this->status->TooltipValue = "";
-
-		// parent
-		$this->parent->LinkCustomAttributes = "";
-		$this->parent->HrefValue = "";
-		$this->parent->TooltipValue = "";
 
 		// keterangan
 		$this->keterangan->LinkCustomAttributes = "";
@@ -776,20 +857,10 @@ class cvrekening2 extends cTable {
 		// group
 		$this->group->EditAttrs["class"] = "form-control";
 		$this->group->EditCustomAttributes = "";
-		$this->group->EditValue = $this->group->CurrentValue;
-		$this->group->PlaceHolder = ew_RemoveHtml($this->group->FldCaption());
 
-		// id1
-		$this->id1->EditAttrs["class"] = "form-control";
-		$this->id1->EditCustomAttributes = "";
-		$this->id1->EditValue = $this->id1->CurrentValue;
-		$this->id1->PlaceHolder = ew_RemoveHtml($this->id1->FldCaption());
-
-		// id2
-		$this->id2->EditAttrs["class"] = "form-control";
-		$this->id2->EditCustomAttributes = "";
-		$this->id2->EditValue = $this->id2->CurrentValue;
-		$this->id2->PlaceHolder = ew_RemoveHtml($this->id2->FldCaption());
+		// parent
+		$this->parent->EditAttrs["class"] = "form-control";
+		$this->parent->EditCustomAttributes = "";
 
 		// rekening
 		$this->rekening->EditAttrs["class"] = "form-control";
@@ -797,33 +868,45 @@ class cvrekening2 extends cTable {
 		$this->rekening->EditValue = $this->rekening->CurrentValue;
 		$this->rekening->PlaceHolder = ew_RemoveHtml($this->rekening->FldCaption());
 
+		// id1
+		$this->id1->EditAttrs["class"] = "form-control";
+		$this->id1->EditCustomAttributes = "";
+		$this->id1->EditValue = $this->id1->CurrentValue;
+		$this->id1->PlaceHolder = ew_RemoveHtml($this->id1->FldCaption());
+
+		// rekening1
+		$this->rekening1->EditAttrs["class"] = "form-control";
+		$this->rekening1->EditCustomAttributes = "";
+		$this->rekening1->EditValue = $this->rekening1->CurrentValue;
+		$this->rekening1->PlaceHolder = ew_RemoveHtml($this->rekening1->FldCaption());
+
+		// id2
+		$this->id2->EditAttrs["class"] = "form-control";
+		$this->id2->EditCustomAttributes = "";
+		$this->id2->EditValue = $this->id2->CurrentValue;
+		$this->id2->PlaceHolder = ew_RemoveHtml($this->id2->FldCaption());
+
+		// rekening2
+		$this->rekening2->EditAttrs["class"] = "form-control";
+		$this->rekening2->EditCustomAttributes = "";
+		$this->rekening2->EditValue = $this->rekening2->CurrentValue;
+		$this->rekening2->PlaceHolder = ew_RemoveHtml($this->rekening2->FldCaption());
+
 		// tipe
-		$this->tipe->EditAttrs["class"] = "form-control";
 		$this->tipe->EditCustomAttributes = "";
-		$this->tipe->EditValue = $this->tipe->CurrentValue;
-		$this->tipe->PlaceHolder = ew_RemoveHtml($this->tipe->FldCaption());
+		$this->tipe->EditValue = $this->tipe->Options(FALSE);
 
 		// posisi
-		$this->posisi->EditAttrs["class"] = "form-control";
 		$this->posisi->EditCustomAttributes = "";
-		$this->posisi->EditValue = $this->posisi->CurrentValue;
-		$this->posisi->PlaceHolder = ew_RemoveHtml($this->posisi->FldCaption());
+		$this->posisi->EditValue = $this->posisi->Options(FALSE);
 
 		// laporan
-		$this->laporan->EditAttrs["class"] = "form-control";
 		$this->laporan->EditCustomAttributes = "";
-		$this->laporan->EditValue = $this->laporan->CurrentValue;
-		$this->laporan->PlaceHolder = ew_RemoveHtml($this->laporan->FldCaption());
+		$this->laporan->EditValue = $this->laporan->Options(FALSE);
 
 		// status
-		$this->status->EditAttrs["class"] = "form-control";
 		$this->status->EditCustomAttributes = "";
-		$this->status->EditValue = $this->status->CurrentValue;
-		$this->status->PlaceHolder = ew_RemoveHtml($this->status->FldCaption());
-
-		// parent
-		$this->parent->EditAttrs["class"] = "form-control";
-		$this->parent->EditCustomAttributes = "";
+		$this->status->EditValue = $this->status->Options(FALSE);
 
 		// keterangan
 		$this->keterangan->EditAttrs["class"] = "form-control";
@@ -870,26 +953,24 @@ class cvrekening2 extends cTable {
 				if ($ExportPageType == "view") {
 					if ($this->group->Exportable) $Doc->ExportCaption($this->group);
 					if ($this->id1->Exportable) $Doc->ExportCaption($this->id1);
+					if ($this->rekening1->Exportable) $Doc->ExportCaption($this->rekening1);
 					if ($this->id2->Exportable) $Doc->ExportCaption($this->id2);
-					if ($this->rekening->Exportable) $Doc->ExportCaption($this->rekening);
+					if ($this->rekening2->Exportable) $Doc->ExportCaption($this->rekening2);
 					if ($this->tipe->Exportable) $Doc->ExportCaption($this->tipe);
-					if ($this->posisi->Exportable) $Doc->ExportCaption($this->posisi);
-					if ($this->laporan->Exportable) $Doc->ExportCaption($this->laporan);
 					if ($this->status->Exportable) $Doc->ExportCaption($this->status);
-					if ($this->parent->Exportable) $Doc->ExportCaption($this->parent);
 					if ($this->keterangan->Exportable) $Doc->ExportCaption($this->keterangan);
-					if ($this->active->Exportable) $Doc->ExportCaption($this->active);
-					if ($this->id->Exportable) $Doc->ExportCaption($this->id);
 				} else {
 					if ($this->group->Exportable) $Doc->ExportCaption($this->group);
-					if ($this->id1->Exportable) $Doc->ExportCaption($this->id1);
-					if ($this->id2->Exportable) $Doc->ExportCaption($this->id2);
+					if ($this->parent->Exportable) $Doc->ExportCaption($this->parent);
 					if ($this->rekening->Exportable) $Doc->ExportCaption($this->rekening);
+					if ($this->id1->Exportable) $Doc->ExportCaption($this->id1);
+					if ($this->rekening1->Exportable) $Doc->ExportCaption($this->rekening1);
+					if ($this->id2->Exportable) $Doc->ExportCaption($this->id2);
+					if ($this->rekening2->Exportable) $Doc->ExportCaption($this->rekening2);
 					if ($this->tipe->Exportable) $Doc->ExportCaption($this->tipe);
 					if ($this->posisi->Exportable) $Doc->ExportCaption($this->posisi);
 					if ($this->laporan->Exportable) $Doc->ExportCaption($this->laporan);
 					if ($this->status->Exportable) $Doc->ExportCaption($this->status);
-					if ($this->parent->Exportable) $Doc->ExportCaption($this->parent);
 					if ($this->keterangan->Exportable) $Doc->ExportCaption($this->keterangan);
 					if ($this->active->Exportable) $Doc->ExportCaption($this->active);
 					if ($this->id->Exportable) $Doc->ExportCaption($this->id);
@@ -926,26 +1007,24 @@ class cvrekening2 extends cTable {
 					if ($ExportPageType == "view") {
 						if ($this->group->Exportable) $Doc->ExportField($this->group);
 						if ($this->id1->Exportable) $Doc->ExportField($this->id1);
+						if ($this->rekening1->Exportable) $Doc->ExportField($this->rekening1);
 						if ($this->id2->Exportable) $Doc->ExportField($this->id2);
-						if ($this->rekening->Exportable) $Doc->ExportField($this->rekening);
+						if ($this->rekening2->Exportable) $Doc->ExportField($this->rekening2);
 						if ($this->tipe->Exportable) $Doc->ExportField($this->tipe);
-						if ($this->posisi->Exportable) $Doc->ExportField($this->posisi);
-						if ($this->laporan->Exportable) $Doc->ExportField($this->laporan);
 						if ($this->status->Exportable) $Doc->ExportField($this->status);
-						if ($this->parent->Exportable) $Doc->ExportField($this->parent);
 						if ($this->keterangan->Exportable) $Doc->ExportField($this->keterangan);
-						if ($this->active->Exportable) $Doc->ExportField($this->active);
-						if ($this->id->Exportable) $Doc->ExportField($this->id);
 					} else {
 						if ($this->group->Exportable) $Doc->ExportField($this->group);
-						if ($this->id1->Exportable) $Doc->ExportField($this->id1);
-						if ($this->id2->Exportable) $Doc->ExportField($this->id2);
+						if ($this->parent->Exportable) $Doc->ExportField($this->parent);
 						if ($this->rekening->Exportable) $Doc->ExportField($this->rekening);
+						if ($this->id1->Exportable) $Doc->ExportField($this->id1);
+						if ($this->rekening1->Exportable) $Doc->ExportField($this->rekening1);
+						if ($this->id2->Exportable) $Doc->ExportField($this->id2);
+						if ($this->rekening2->Exportable) $Doc->ExportField($this->rekening2);
 						if ($this->tipe->Exportable) $Doc->ExportField($this->tipe);
 						if ($this->posisi->Exportable) $Doc->ExportField($this->posisi);
 						if ($this->laporan->Exportable) $Doc->ExportField($this->laporan);
 						if ($this->status->Exportable) $Doc->ExportField($this->status);
-						if ($this->parent->Exportable) $Doc->ExportField($this->parent);
 						if ($this->keterangan->Exportable) $Doc->ExportField($this->keterangan);
 						if ($this->active->Exportable) $Doc->ExportField($this->active);
 						if ($this->id->Exportable) $Doc->ExportField($this->id);
@@ -1035,6 +1114,15 @@ class cvrekening2 extends cTable {
 		// Enter your code here
 		// To cancel, set return value to FALSE
 
+		if ($rsnew["id1"] <> "") {
+			$rsnew["id"] = $rsnew["id1"];
+		}
+		else {
+			$rsnew["id"] = $rsnew["id2"];
+		}
+		unset($rsnew["id1"]);
+		unset($rsnew["id2"]);
+		$this->UpdateTable = "trekening";
 		return TRUE;
 	}
 
@@ -1050,6 +1138,15 @@ class cvrekening2 extends cTable {
 		// Enter your code here
 		// To cancel, set return value to FALSE
 
+		if ($rsnew["id1"] <> "") {
+			$rsnew["id"] = $rsnew["id1"];
+		}
+		else {
+			$rsnew["id"] = $rsnew["id2"];
+		}
+		unset($rsnew["id1"]);
+		unset($rsnew["id2"]);
+		$this->UpdateTable = "trekening";
 		return TRUE;
 	}
 

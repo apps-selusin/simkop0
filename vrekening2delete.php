@@ -253,16 +253,12 @@ class cvrekening2_delete extends cvrekening2 {
 		$this->CurrentAction = (@$_GET["a"] <> "") ? $_GET["a"] : @$_POST["a_list"]; // Set up current action
 		$this->group->SetVisibility();
 		$this->id1->SetVisibility();
+		$this->rekening1->SetVisibility();
 		$this->id2->SetVisibility();
-		$this->rekening->SetVisibility();
+		$this->rekening2->SetVisibility();
 		$this->tipe->SetVisibility();
-		$this->posisi->SetVisibility();
-		$this->laporan->SetVisibility();
 		$this->status->SetVisibility();
-		$this->parent->SetVisibility();
 		$this->keterangan->SetVisibility();
-		$this->active->SetVisibility();
-		$this->id->SetVisibility();
 
 		// Global Page Loading event (in userfn*.php)
 		Page_Loading();
@@ -438,14 +434,16 @@ class cvrekening2_delete extends cvrekening2 {
 		$row = &$rs->fields;
 		$this->Row_Selected($row);
 		$this->group->setDbValue($rs->fields('group'));
-		$this->id1->setDbValue($rs->fields('id1'));
-		$this->id2->setDbValue($rs->fields('id2'));
+		$this->parent->setDbValue($rs->fields('parent'));
 		$this->rekening->setDbValue($rs->fields('rekening'));
+		$this->id1->setDbValue($rs->fields('id1'));
+		$this->rekening1->setDbValue($rs->fields('rekening1'));
+		$this->id2->setDbValue($rs->fields('id2'));
+		$this->rekening2->setDbValue($rs->fields('rekening2'));
 		$this->tipe->setDbValue($rs->fields('tipe'));
 		$this->posisi->setDbValue($rs->fields('posisi'));
 		$this->laporan->setDbValue($rs->fields('laporan'));
 		$this->status->setDbValue($rs->fields('status'));
-		$this->parent->setDbValue($rs->fields('parent'));
 		$this->keterangan->setDbValue($rs->fields('keterangan'));
 		$this->active->setDbValue($rs->fields('active'));
 		$this->id->setDbValue($rs->fields('id'));
@@ -456,14 +454,16 @@ class cvrekening2_delete extends cvrekening2 {
 		if (!$rs || !is_array($rs) && $rs->EOF) return;
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->group->DbValue = $row['group'];
-		$this->id1->DbValue = $row['id1'];
-		$this->id2->DbValue = $row['id2'];
+		$this->parent->DbValue = $row['parent'];
 		$this->rekening->DbValue = $row['rekening'];
+		$this->id1->DbValue = $row['id1'];
+		$this->rekening1->DbValue = $row['rekening1'];
+		$this->id2->DbValue = $row['id2'];
+		$this->rekening2->DbValue = $row['rekening2'];
 		$this->tipe->DbValue = $row['tipe'];
 		$this->posisi->DbValue = $row['posisi'];
 		$this->laporan->DbValue = $row['laporan'];
 		$this->status->DbValue = $row['status'];
-		$this->parent->DbValue = $row['parent'];
 		$this->keterangan->DbValue = $row['keterangan'];
 		$this->active->DbValue = $row['active'];
 		$this->id->DbValue = $row['id'];
@@ -480,14 +480,16 @@ class cvrekening2_delete extends cvrekening2 {
 
 		// Common render codes for all row types
 		// group
-		// id1
-		// id2
+		// parent
 		// rekening
+		// id1
+		// rekening1
+		// id2
+		// rekening2
 		// tipe
 		// posisi
 		// laporan
 		// status
-		// parent
 		// keterangan
 		// active
 		// id
@@ -495,36 +497,27 @@ class cvrekening2_delete extends cvrekening2 {
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
 
 		// group
-		$this->group->ViewValue = $this->group->CurrentValue;
+		if (strval($this->group->CurrentValue) <> "") {
+			$sFilterWrk = "`group`" . ew_SearchString("=", $this->group->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `group`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening`";
+		$sWhereWrk = "";
+		$this->group->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->group, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->group->ViewValue = $this->group->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->group->ViewValue = $this->group->CurrentValue;
+			}
+		} else {
+			$this->group->ViewValue = NULL;
+		}
 		$this->group->ViewCustomAttributes = "";
-
-		// id1
-		$this->id1->ViewValue = $this->id1->CurrentValue;
-		$this->id1->ViewCustomAttributes = "";
-
-		// id2
-		$this->id2->ViewValue = $this->id2->CurrentValue;
-		$this->id2->ViewCustomAttributes = "";
-
-		// rekening
-		$this->rekening->ViewValue = $this->rekening->CurrentValue;
-		$this->rekening->ViewCustomAttributes = "";
-
-		// tipe
-		$this->tipe->ViewValue = $this->tipe->CurrentValue;
-		$this->tipe->ViewCustomAttributes = "";
-
-		// posisi
-		$this->posisi->ViewValue = $this->posisi->CurrentValue;
-		$this->posisi->ViewCustomAttributes = "";
-
-		// laporan
-		$this->laporan->ViewValue = $this->laporan->CurrentValue;
-		$this->laporan->ViewCustomAttributes = "";
-
-		// status
-		$this->status->ViewValue = $this->status->CurrentValue;
-		$this->status->ViewCustomAttributes = "";
 
 		// parent
 		if (strval($this->parent->CurrentValue) <> "") {
@@ -548,6 +541,64 @@ class cvrekening2_delete extends cvrekening2 {
 			$this->parent->ViewValue = NULL;
 		}
 		$this->parent->ViewCustomAttributes = "";
+
+		// rekening
+		$this->rekening->ViewValue = $this->rekening->CurrentValue;
+		$this->rekening->ViewCustomAttributes = "";
+
+		// id1
+		$this->id1->ViewValue = $this->id1->CurrentValue;
+		$this->id1->ViewCustomAttributes = "";
+
+		// rekening1
+		$this->rekening1->ViewValue = $this->rekening1->CurrentValue;
+		$this->rekening1->ViewCustomAttributes = "";
+
+		// id2
+		$this->id2->ViewValue = $this->id2->CurrentValue;
+		$this->id2->ViewCustomAttributes = "";
+
+		// rekening2
+		$this->rekening2->ViewValue = $this->rekening2->CurrentValue;
+		$this->rekening2->ViewCustomAttributes = "";
+
+		// tipe
+		if (strval($this->tipe->CurrentValue) <> "") {
+			$this->tipe->ViewValue = $this->tipe->OptionCaption($this->tipe->CurrentValue);
+		} else {
+			$this->tipe->ViewValue = NULL;
+		}
+		$this->tipe->ViewCustomAttributes = "";
+
+		// posisi
+		if (strval($this->posisi->CurrentValue) <> "") {
+			$this->posisi->ViewValue = $this->posisi->OptionCaption($this->posisi->CurrentValue);
+		} else {
+			$this->posisi->ViewValue = NULL;
+		}
+		$this->posisi->ViewCustomAttributes = "";
+
+		// laporan
+		if (strval($this->laporan->CurrentValue) <> "") {
+			$this->laporan->ViewValue = $this->laporan->OptionCaption($this->laporan->CurrentValue);
+		} else {
+			$this->laporan->ViewValue = NULL;
+		}
+		$this->laporan->ViewCustomAttributes = "";
+
+		// status
+		if (strval($this->status->CurrentValue) <> "") {
+			$this->status->ViewValue = "";
+			$arwrk = explode(",", strval($this->status->CurrentValue));
+			$cnt = count($arwrk);
+			for ($ari = 0; $ari < $cnt; $ari++) {
+				$this->status->ViewValue .= $this->status->OptionCaption(trim($arwrk[$ari]));
+				if ($ari < $cnt-1) $this->status->ViewValue .= ew_ViewOptionSeparator($ari);
+			}
+		} else {
+			$this->status->ViewValue = NULL;
+		}
+		$this->status->ViewCustomAttributes = "";
 
 		// keterangan
 		$this->keterangan->ViewValue = $this->keterangan->CurrentValue;
@@ -575,55 +626,35 @@ class cvrekening2_delete extends cvrekening2 {
 			$this->id1->HrefValue = "";
 			$this->id1->TooltipValue = "";
 
+			// rekening1
+			$this->rekening1->LinkCustomAttributes = "";
+			$this->rekening1->HrefValue = "";
+			$this->rekening1->TooltipValue = "";
+
 			// id2
 			$this->id2->LinkCustomAttributes = "";
 			$this->id2->HrefValue = "";
 			$this->id2->TooltipValue = "";
 
-			// rekening
-			$this->rekening->LinkCustomAttributes = "";
-			$this->rekening->HrefValue = "";
-			$this->rekening->TooltipValue = "";
+			// rekening2
+			$this->rekening2->LinkCustomAttributes = "";
+			$this->rekening2->HrefValue = "";
+			$this->rekening2->TooltipValue = "";
 
 			// tipe
 			$this->tipe->LinkCustomAttributes = "";
 			$this->tipe->HrefValue = "";
 			$this->tipe->TooltipValue = "";
 
-			// posisi
-			$this->posisi->LinkCustomAttributes = "";
-			$this->posisi->HrefValue = "";
-			$this->posisi->TooltipValue = "";
-
-			// laporan
-			$this->laporan->LinkCustomAttributes = "";
-			$this->laporan->HrefValue = "";
-			$this->laporan->TooltipValue = "";
-
 			// status
 			$this->status->LinkCustomAttributes = "";
 			$this->status->HrefValue = "";
 			$this->status->TooltipValue = "";
 
-			// parent
-			$this->parent->LinkCustomAttributes = "";
-			$this->parent->HrefValue = "";
-			$this->parent->TooltipValue = "";
-
 			// keterangan
 			$this->keterangan->LinkCustomAttributes = "";
 			$this->keterangan->HrefValue = "";
 			$this->keterangan->TooltipValue = "";
-
-			// active
-			$this->active->LinkCustomAttributes = "";
-			$this->active->HrefValue = "";
-			$this->active->TooltipValue = "";
-
-			// id
-			$this->id->LinkCustomAttributes = "";
-			$this->id->HrefValue = "";
-			$this->id->TooltipValue = "";
 		}
 
 		// Call Row Rendered event
@@ -838,9 +869,11 @@ fvrekening2delete.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-fvrekening2delete.Lists["x_parent"] = {"LinkField":"x_id","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening"};
-fvrekening2delete.Lists["x_active"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
-fvrekening2delete.Lists["x_active"].Options = <?php echo json_encode($vrekening2->active->Options()) ?>;
+fvrekening2delete.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening"};
+fvrekening2delete.Lists["x_tipe"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
+fvrekening2delete.Lists["x_tipe"].Options = <?php echo json_encode($vrekening2->tipe->Options()) ?>;
+fvrekening2delete.Lists["x_status[]"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
+fvrekening2delete.Lists["x_status[]"].Options = <?php echo json_encode($vrekening2->status->Options()) ?>;
 
 // Form object for search
 </script>
@@ -879,35 +912,23 @@ $vrekening2_delete->ShowMessage();
 <?php if ($vrekening2->id1->Visible) { // id1 ?>
 		<th><span id="elh_vrekening2_id1" class="vrekening2_id1"><?php echo $vrekening2->id1->FldCaption() ?></span></th>
 <?php } ?>
+<?php if ($vrekening2->rekening1->Visible) { // rekening1 ?>
+		<th><span id="elh_vrekening2_rekening1" class="vrekening2_rekening1"><?php echo $vrekening2->rekening1->FldCaption() ?></span></th>
+<?php } ?>
 <?php if ($vrekening2->id2->Visible) { // id2 ?>
 		<th><span id="elh_vrekening2_id2" class="vrekening2_id2"><?php echo $vrekening2->id2->FldCaption() ?></span></th>
 <?php } ?>
-<?php if ($vrekening2->rekening->Visible) { // rekening ?>
-		<th><span id="elh_vrekening2_rekening" class="vrekening2_rekening"><?php echo $vrekening2->rekening->FldCaption() ?></span></th>
+<?php if ($vrekening2->rekening2->Visible) { // rekening2 ?>
+		<th><span id="elh_vrekening2_rekening2" class="vrekening2_rekening2"><?php echo $vrekening2->rekening2->FldCaption() ?></span></th>
 <?php } ?>
 <?php if ($vrekening2->tipe->Visible) { // tipe ?>
 		<th><span id="elh_vrekening2_tipe" class="vrekening2_tipe"><?php echo $vrekening2->tipe->FldCaption() ?></span></th>
 <?php } ?>
-<?php if ($vrekening2->posisi->Visible) { // posisi ?>
-		<th><span id="elh_vrekening2_posisi" class="vrekening2_posisi"><?php echo $vrekening2->posisi->FldCaption() ?></span></th>
-<?php } ?>
-<?php if ($vrekening2->laporan->Visible) { // laporan ?>
-		<th><span id="elh_vrekening2_laporan" class="vrekening2_laporan"><?php echo $vrekening2->laporan->FldCaption() ?></span></th>
-<?php } ?>
 <?php if ($vrekening2->status->Visible) { // status ?>
 		<th><span id="elh_vrekening2_status" class="vrekening2_status"><?php echo $vrekening2->status->FldCaption() ?></span></th>
 <?php } ?>
-<?php if ($vrekening2->parent->Visible) { // parent ?>
-		<th><span id="elh_vrekening2_parent" class="vrekening2_parent"><?php echo $vrekening2->parent->FldCaption() ?></span></th>
-<?php } ?>
 <?php if ($vrekening2->keterangan->Visible) { // keterangan ?>
 		<th><span id="elh_vrekening2_keterangan" class="vrekening2_keterangan"><?php echo $vrekening2->keterangan->FldCaption() ?></span></th>
-<?php } ?>
-<?php if ($vrekening2->active->Visible) { // active ?>
-		<th><span id="elh_vrekening2_active" class="vrekening2_active"><?php echo $vrekening2->active->FldCaption() ?></span></th>
-<?php } ?>
-<?php if ($vrekening2->id->Visible) { // id ?>
-		<th><span id="elh_vrekening2_id" class="vrekening2_id"><?php echo $vrekening2->id->FldCaption() ?></span></th>
 <?php } ?>
 	</tr>
 	</thead>
@@ -946,6 +967,14 @@ while (!$vrekening2_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
+<?php if ($vrekening2->rekening1->Visible) { // rekening1 ?>
+		<td<?php echo $vrekening2->rekening1->CellAttributes() ?>>
+<span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_rekening1" class="vrekening2_rekening1">
+<span<?php echo $vrekening2->rekening1->ViewAttributes() ?>>
+<?php echo $vrekening2->rekening1->ListViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
 <?php if ($vrekening2->id2->Visible) { // id2 ?>
 		<td<?php echo $vrekening2->id2->CellAttributes() ?>>
 <span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_id2" class="vrekening2_id2">
@@ -954,11 +983,11 @@ while (!$vrekening2_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($vrekening2->rekening->Visible) { // rekening ?>
-		<td<?php echo $vrekening2->rekening->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_rekening" class="vrekening2_rekening">
-<span<?php echo $vrekening2->rekening->ViewAttributes() ?>>
-<?php echo $vrekening2->rekening->ListViewValue() ?></span>
+<?php if ($vrekening2->rekening2->Visible) { // rekening2 ?>
+		<td<?php echo $vrekening2->rekening2->CellAttributes() ?>>
+<span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_rekening2" class="vrekening2_rekening2">
+<span<?php echo $vrekening2->rekening2->ViewAttributes() ?>>
+<?php echo $vrekening2->rekening2->ListViewValue() ?></span>
 </span>
 </td>
 <?php } ?>
@@ -970,22 +999,6 @@ while (!$vrekening2_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($vrekening2->posisi->Visible) { // posisi ?>
-		<td<?php echo $vrekening2->posisi->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_posisi" class="vrekening2_posisi">
-<span<?php echo $vrekening2->posisi->ViewAttributes() ?>>
-<?php echo $vrekening2->posisi->ListViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($vrekening2->laporan->Visible) { // laporan ?>
-		<td<?php echo $vrekening2->laporan->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_laporan" class="vrekening2_laporan">
-<span<?php echo $vrekening2->laporan->ViewAttributes() ?>>
-<?php echo $vrekening2->laporan->ListViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($vrekening2->status->Visible) { // status ?>
 		<td<?php echo $vrekening2->status->CellAttributes() ?>>
 <span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_status" class="vrekening2_status">
@@ -994,35 +1007,11 @@ while (!$vrekening2_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($vrekening2->parent->Visible) { // parent ?>
-		<td<?php echo $vrekening2->parent->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_parent" class="vrekening2_parent">
-<span<?php echo $vrekening2->parent->ViewAttributes() ?>>
-<?php echo $vrekening2->parent->ListViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($vrekening2->keterangan->Visible) { // keterangan ?>
 		<td<?php echo $vrekening2->keterangan->CellAttributes() ?>>
 <span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_keterangan" class="vrekening2_keterangan">
 <span<?php echo $vrekening2->keterangan->ViewAttributes() ?>>
 <?php echo $vrekening2->keterangan->ListViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($vrekening2->active->Visible) { // active ?>
-		<td<?php echo $vrekening2->active->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_active" class="vrekening2_active">
-<span<?php echo $vrekening2->active->ViewAttributes() ?>>
-<?php echo $vrekening2->active->ListViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($vrekening2->id->Visible) { // id ?>
-		<td<?php echo $vrekening2->id->CellAttributes() ?>>
-<span id="el<?php echo $vrekening2_delete->RowCnt ?>_vrekening2_id" class="vrekening2_id">
-<span<?php echo $vrekening2->id->ViewAttributes() ?>>
-<?php echo $vrekening2->id->ListViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

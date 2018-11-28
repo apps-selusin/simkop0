@@ -3,6 +3,8 @@
 
 // Generate all menu items
 $RootMenu->IsRoot = TRUE;
+$RootMenu->AddMenuItem(10022, "mmi_trekening2", $Language->MenuPhrase("10022", "MenuText"), "trekening2list.php", -1, "", TRUE, FALSE, FALSE);
+$RootMenu->AddMenuItem(21, "mmi_Report1", $Language->MenuPhrase("21", "MenuText"), "Report1report.php", -1, "", TRUE, FALSE, FALSE);
 $RootMenu->AddMenuItem(1, "mmi_tanggota", $Language->MenuPhrase("1", "MenuText"), "tanggotalist.php", -1, "", TRUE, FALSE, FALSE);
 $RootMenu->AddMenuItem(2, "mmi_tbayarangsuran", $Language->MenuPhrase("2", "MenuText"), "tbayarangsuranlist.php", -1, "", TRUE, FALSE, FALSE);
 $RootMenu->AddMenuItem(3, "mmi_tbayartitipan", $Language->MenuPhrase("3", "MenuText"), "tbayartitipanlist.php", -1, "", TRUE, FALSE, FALSE);
@@ -23,6 +25,7 @@ $RootMenu->AddMenuItem(17, "mmi_tuser", $Language->MenuPhrase("17", "MenuText"),
 $RootMenu->AddMenuItem(18, "mmi_vrekening", $Language->MenuPhrase("18", "MenuText"), "vrekeninglist.php?cmd=resetall", -1, "", TRUE, FALSE, FALSE);
 $RootMenu->AddMenuItem(19, "mmi_vrekeninggroup", $Language->MenuPhrase("19", "MenuText"), "vrekeninggrouplist.php", -1, "", TRUE, FALSE, FALSE);
 $RootMenu->AddMenuItem(20, "mmi_vrekening2", $Language->MenuPhrase("20", "MenuText"), "vrekening2list.php", -1, "", TRUE, FALSE, FALSE);
+$RootMenu->AddMenuItem(10021, "mmri_Report1", $Language->MenuPhrase("10021", "MenuText"), "Report1smry.php", -1, "{e3b093f1-120d-4a26-9ac0-4e96d12c121b}", TRUE, FALSE, FALSE);
 $RootMenu->Render();
 ?>
 <!-- End Main Menu -->
