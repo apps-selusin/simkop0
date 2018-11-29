@@ -444,6 +444,7 @@ class ctrekening3_delete extends ctrekening3 {
 		$this->tipe->setDbValue($rs->fields('tipe'));
 		$this->status->setDbValue($rs->fields('status'));
 		$this->active->setDbValue($rs->fields('active'));
+		$this->group2->setDbValue($rs->fields('group2'));
 	}
 
 	// Load DbValue from recordset
@@ -463,6 +464,7 @@ class ctrekening3_delete extends ctrekening3 {
 		$this->tipe->DbValue = $row['tipe'];
 		$this->status->DbValue = $row['status'];
 		$this->active->DbValue = $row['active'];
+		$this->group2->DbValue = $row['group2'];
 	}
 
 	// Render row values based on field settings
@@ -488,6 +490,7 @@ class ctrekening3_delete extends ctrekening3 {
 		// tipe
 		// status
 		// active
+		// group2
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
 
@@ -600,6 +603,10 @@ class ctrekening3_delete extends ctrekening3 {
 			$this->active->ViewValue = NULL;
 		}
 		$this->active->ViewCustomAttributes = "";
+
+		// group2
+		$this->group2->ViewValue = $this->group2->CurrentValue;
+		$this->group2->ViewCustomAttributes = "";
 
 			// group
 			$this->group->LinkCustomAttributes = "";
@@ -844,7 +851,7 @@ ftrekening3delete.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-ftrekening3delete.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
+ftrekening3delete.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":["x_parent"],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
 ftrekening3delete.Lists["x_status[]"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
 ftrekening3delete.Lists["x_status[]"].Options = <?php echo json_encode($trekening3->status->Options()) ?>;
 

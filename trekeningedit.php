@@ -959,33 +959,33 @@ class ctrekening_edit extends ctrekening {
 			$rsnew = array();
 
 			// group
-			$this->group->SetDbValueDef($rsnew, $this->group->CurrentValue, 0, $this->group->ReadOnly);
+			$this->group->SetDbValueDef($rsnew, $this->group->CurrentValue, NULL, $this->group->ReadOnly);
 
 			// id
 			// rekening
 
-			$this->rekening->SetDbValueDef($rsnew, $this->rekening->CurrentValue, "", $this->rekening->ReadOnly);
+			$this->rekening->SetDbValueDef($rsnew, $this->rekening->CurrentValue, NULL, $this->rekening->ReadOnly);
 
 			// tipe
-			$this->tipe->SetDbValueDef($rsnew, $this->tipe->CurrentValue, "", $this->tipe->ReadOnly);
+			$this->tipe->SetDbValueDef($rsnew, $this->tipe->CurrentValue, NULL, $this->tipe->ReadOnly);
 
 			// posisi
-			$this->posisi->SetDbValueDef($rsnew, $this->posisi->CurrentValue, "", $this->posisi->ReadOnly);
+			$this->posisi->SetDbValueDef($rsnew, $this->posisi->CurrentValue, NULL, $this->posisi->ReadOnly);
 
 			// laporan
-			$this->laporan->SetDbValueDef($rsnew, $this->laporan->CurrentValue, "", $this->laporan->ReadOnly);
+			$this->laporan->SetDbValueDef($rsnew, $this->laporan->CurrentValue, NULL, $this->laporan->ReadOnly);
 
 			// status
-			$this->status->SetDbValueDef($rsnew, $this->status->CurrentValue, "", $this->status->ReadOnly);
+			$this->status->SetDbValueDef($rsnew, $this->status->CurrentValue, NULL, $this->status->ReadOnly);
 
 			// parent
-			$this->parent->SetDbValueDef($rsnew, $this->parent->CurrentValue, "", $this->parent->ReadOnly);
+			$this->parent->SetDbValueDef($rsnew, $this->parent->CurrentValue, NULL, $this->parent->ReadOnly);
 
 			// keterangan
-			$this->keterangan->SetDbValueDef($rsnew, $this->keterangan->CurrentValue, "", $this->keterangan->ReadOnly);
+			$this->keterangan->SetDbValueDef($rsnew, $this->keterangan->CurrentValue, NULL, $this->keterangan->ReadOnly);
 
 			// active
-			$this->active->SetDbValueDef($rsnew, $this->active->CurrentValue, "", $this->active->ReadOnly);
+			$this->active->SetDbValueDef($rsnew, $this->active->CurrentValue, NULL, $this->active->ReadOnly);
 
 			// Call Row Updating event
 			$bUpdateRow = $this->Row_Updating($rsold, $rsnew);

@@ -974,34 +974,34 @@ class ctrekening_add extends ctrekening {
 		$rsnew = array();
 
 		// group
-		$this->group->SetDbValueDef($rsnew, $this->group->CurrentValue, 0, strval($this->group->CurrentValue) == "");
+		$this->group->SetDbValueDef($rsnew, $this->group->CurrentValue, NULL, strval($this->group->CurrentValue) == "");
 
 		// id
 		$this->id->SetDbValueDef($rsnew, $this->id->CurrentValue, "", FALSE);
 
 		// rekening
-		$this->rekening->SetDbValueDef($rsnew, $this->rekening->CurrentValue, "", FALSE);
+		$this->rekening->SetDbValueDef($rsnew, $this->rekening->CurrentValue, NULL, FALSE);
 
 		// tipe
-		$this->tipe->SetDbValueDef($rsnew, $this->tipe->CurrentValue, "", FALSE);
+		$this->tipe->SetDbValueDef($rsnew, $this->tipe->CurrentValue, NULL, FALSE);
 
 		// posisi
-		$this->posisi->SetDbValueDef($rsnew, $this->posisi->CurrentValue, "", FALSE);
+		$this->posisi->SetDbValueDef($rsnew, $this->posisi->CurrentValue, NULL, FALSE);
 
 		// laporan
-		$this->laporan->SetDbValueDef($rsnew, $this->laporan->CurrentValue, "", FALSE);
+		$this->laporan->SetDbValueDef($rsnew, $this->laporan->CurrentValue, NULL, FALSE);
 
 		// status
-		$this->status->SetDbValueDef($rsnew, $this->status->CurrentValue, "", FALSE);
+		$this->status->SetDbValueDef($rsnew, $this->status->CurrentValue, NULL, FALSE);
 
 		// parent
-		$this->parent->SetDbValueDef($rsnew, $this->parent->CurrentValue, "", FALSE);
+		$this->parent->SetDbValueDef($rsnew, $this->parent->CurrentValue, NULL, FALSE);
 
 		// keterangan
-		$this->keterangan->SetDbValueDef($rsnew, $this->keterangan->CurrentValue, "", FALSE);
+		$this->keterangan->SetDbValueDef($rsnew, $this->keterangan->CurrentValue, NULL, FALSE);
 
 		// active
-		$this->active->SetDbValueDef($rsnew, $this->active->CurrentValue, "", strval($this->active->CurrentValue) == "");
+		$this->active->SetDbValueDef($rsnew, $this->active->CurrentValue, NULL, strval($this->active->CurrentValue) == "");
 
 		// Call Row Inserting event
 		$rs = ($rsold == NULL) ? NULL : $rsold->fields;

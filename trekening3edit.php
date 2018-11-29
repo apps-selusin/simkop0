@@ -549,6 +549,7 @@ class ctrekening3_edit extends ctrekening3 {
 		$this->tipe->setDbValue($rs->fields('tipe'));
 		$this->status->setDbValue($rs->fields('status'));
 		$this->active->setDbValue($rs->fields('active'));
+		$this->group2->setDbValue($rs->fields('group2'));
 	}
 
 	// Load DbValue from recordset
@@ -568,6 +569,7 @@ class ctrekening3_edit extends ctrekening3 {
 		$this->tipe->DbValue = $row['tipe'];
 		$this->status->DbValue = $row['status'];
 		$this->active->DbValue = $row['active'];
+		$this->group2->DbValue = $row['group2'];
 	}
 
 	// Render row values based on field settings
@@ -593,6 +595,7 @@ class ctrekening3_edit extends ctrekening3 {
 		// tipe
 		// status
 		// active
+		// group2
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
 
@@ -706,6 +709,10 @@ class ctrekening3_edit extends ctrekening3 {
 		}
 		$this->active->ViewCustomAttributes = "";
 
+		// group2
+		$this->group2->ViewValue = $this->group2->CurrentValue;
+		$this->group2->ViewCustomAttributes = "";
+
 			// group
 			$this->group->LinkCustomAttributes = "";
 			$this->group->HrefValue = "";
@@ -777,7 +784,7 @@ class ctrekening3_edit extends ctrekening3 {
 			} else {
 				$sFilterWrk = "`id`" . ew_SearchString("=", $this->parent->CurrentValue, EW_DATATYPE_STRING, "");
 			}
-			$sSqlWrk = "SELECT `id`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `trekening3`";
+			$sSqlWrk = "SELECT `id`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, substring(id,1,1) AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `trekening3`";
 			$sWhereWrk = "";
 			$this->parent->LookupFilters = array();
 			ew_AddFilter($sWhereWrk, $sFilterWrk);
@@ -967,12 +974,26 @@ class ctrekening3_edit extends ctrekening3 {
 		global $gsLanguage;
 		$pageId = $pageId ?: $this->PageID;
 		switch ($fld->FldVar) {
+		case "x_group":
+			$sSqlWrk = "";
+			$sSqlWrk = "SELECT `group` AS `LinkFld`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening3`";
+			$sWhereWrk = "";
+			$this->group->LookupFilters = array();
+			$lookuptblfilter = "`tipe` = 'GROUP'";
+			ew_AddFilter($sWhereWrk, $lookuptblfilter);
+			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => '`group` = {filter_value}', "t0" => "20", "fn0" => "");
+			$sSqlWrk = "";
+			$this->Lookup_Selecting($this->group, $sWhereWrk); // Call Lookup selecting
+			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			if ($sSqlWrk <> "")
+				$fld->LookupFilters["s"] .= $sSqlWrk;
+			break;
 		case "x_parent":
 			$sSqlWrk = "";
 			$sSqlWrk = "SELECT `id` AS `LinkFld`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening3`";
-			$sWhereWrk = "";
+			$sWhereWrk = "{filter}";
 			$this->parent->LookupFilters = array();
-			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => '`id` = {filter_value}', "t0" => "200", "fn0" => "");
+			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => '`id` = {filter_value}', "t0" => "200", "fn0" => "", "f1" => 'substring(id,1,1) IN ({filter_value})', "t1" => "200", "fn1" => "");
 			$sSqlWrk = "";
 			$this->Lookup_Selecting($this->parent, $sWhereWrk); // Call Lookup selecting
 			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
@@ -1131,8 +1152,8 @@ ftrekening3edit.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-ftrekening3edit.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
-ftrekening3edit.Lists["x_parent"] = {"LinkField":"x_id","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
+ftrekening3edit.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":["x_parent"],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
+ftrekening3edit.Lists["x_parent"] = {"LinkField":"x_id","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":["x_group"],"ChildFields":[],"FilterFields":["x_group2"],"Options":[],"Template":"","LinkTable":"trekening3"};
 ftrekening3edit.Lists["x_tipe"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
 ftrekening3edit.Lists["x_tipe"].Options = <?php echo json_encode($trekening3->tipe->Options()) ?>;
 ftrekening3edit.Lists["x_status[]"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
@@ -1270,6 +1291,37 @@ if (EW_DEBUG_ENABLED)
 // Write your table-specific startup script here
 // document.write("page loaded");
 
+/*
+$(document).ready(
+	function() {
+
+		// saat form loading
+		if ($('input[name=x_tipe]:radio:checked').val() == "HEADER") {
+
+			//$("#x_parent").show();
+			$("#x_parent").hide();
+		}
+		else {
+
+			//$("#x_parent").hide();
+			$("#x_parent").show();
+		}
+
+		// saat radio diklik
+		$("input[name=x_tipe]:radio").click(
+			function() {
+				if ($(this).attr("value") == "HEADER") {
+					$("#x_parent").hide();
+				}
+				else {
+					$("#x_parent").show();
+					$("#x_parent").focus();
+				}
+			}
+		);
+	}
+);
+*/
 </script>
 <?php include_once "footer.php" ?>
 <?php

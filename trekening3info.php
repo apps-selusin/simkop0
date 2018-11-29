@@ -20,6 +20,7 @@ class ctrekening3 extends cTable {
 	var $tipe;
 	var $status;
 	var $active;
+	var $group2;
 
 	//
 	// Table class constructor
@@ -126,6 +127,12 @@ class ctrekening3 extends cTable {
 		$this->active->Sortable = TRUE; // Allow sort
 		$this->active->OptionCount = 2;
 		$this->fields['active'] = &$this->active;
+
+		// group2
+		$this->group2 = new cField('trekening3', 'trekening3', 'x_group2', 'group2', 'substring(id,1,1)', 'substring(id,1,1)', 200, -1, FALSE, 'substring(id,1,1)', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->group2->FldIsCustom = TRUE; // Custom field
+		$this->group2->Sortable = TRUE; // Allow sort
+		$this->fields['group2'] = &$this->group2;
 	}
 
 	// Set Field Visibility
@@ -168,7 +175,7 @@ class ctrekening3 extends cTable {
 	var $_SqlSelect = "";
 
 	function getSqlSelect() { // Select
-		return ($this->_SqlSelect <> "") ? $this->_SqlSelect : "SELECT *, case when length(parent) = 1 then id else '' end AS `id1`, case when length(parent) > 1 then id else '' end AS `id2`, id AS `id3` FROM " . $this->getSqlFrom();
+		return ($this->_SqlSelect <> "") ? $this->_SqlSelect : "SELECT *, case when length(parent) = 1 then id else '' end AS `id1`, case when length(parent) > 1 then id else '' end AS `id2`, id AS `id3`, substring(id,1,1) AS `group2` FROM " . $this->getSqlFrom();
 	}
 
 	function SqlSelect() { // For backward compatibility
@@ -622,6 +629,7 @@ class ctrekening3 extends cTable {
 		$this->tipe->setDbValue($rs->fields('tipe'));
 		$this->status->setDbValue($rs->fields('status'));
 		$this->active->setDbValue($rs->fields('active'));
+		$this->group2->setDbValue($rs->fields('group2'));
 	}
 
 	// Render list row values
@@ -645,6 +653,7 @@ class ctrekening3 extends cTable {
 		// tipe
 		// status
 		// active
+		// group2
 		// group
 
 		if (strval($this->group->CurrentValue) <> "") {
@@ -756,6 +765,10 @@ class ctrekening3 extends cTable {
 		}
 		$this->active->ViewCustomAttributes = "";
 
+		// group2
+		$this->group2->ViewValue = $this->group2->CurrentValue;
+		$this->group2->ViewCustomAttributes = "";
+
 		// group
 		$this->group->LinkCustomAttributes = "";
 		$this->group->HrefValue = "";
@@ -820,6 +833,11 @@ class ctrekening3 extends cTable {
 		$this->active->LinkCustomAttributes = "";
 		$this->active->HrefValue = "";
 		$this->active->TooltipValue = "";
+
+		// group2
+		$this->group2->LinkCustomAttributes = "";
+		$this->group2->HrefValue = "";
+		$this->group2->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -923,6 +941,12 @@ class ctrekening3 extends cTable {
 		$this->active->EditCustomAttributes = "";
 		$this->active->EditValue = $this->active->Options(FALSE);
 
+		// group2
+		$this->group2->EditAttrs["class"] = "form-control";
+		$this->group2->EditCustomAttributes = "";
+		$this->group2->EditValue = $this->group2->CurrentValue;
+		$this->group2->PlaceHolder = ew_RemoveHtml($this->group2->FldCaption());
+
 		// Call Row Rendered event
 		$this->Row_Rendered();
 	}
@@ -962,6 +986,7 @@ class ctrekening3 extends cTable {
 					if ($this->keterangan->Exportable) $Doc->ExportCaption($this->keterangan);
 					if ($this->tipe->Exportable) $Doc->ExportCaption($this->tipe);
 					if ($this->status->Exportable) $Doc->ExportCaption($this->status);
+					if ($this->group2->Exportable) $Doc->ExportCaption($this->group2);
 				} else {
 					if ($this->group->Exportable) $Doc->ExportCaption($this->group);
 					if ($this->id->Exportable) $Doc->ExportCaption($this->id);
@@ -976,6 +1001,7 @@ class ctrekening3 extends cTable {
 					if ($this->tipe->Exportable) $Doc->ExportCaption($this->tipe);
 					if ($this->status->Exportable) $Doc->ExportCaption($this->status);
 					if ($this->active->Exportable) $Doc->ExportCaption($this->active);
+					if ($this->group2->Exportable) $Doc->ExportCaption($this->group2);
 				}
 				$Doc->EndExportRow();
 			}
@@ -1019,6 +1045,7 @@ class ctrekening3 extends cTable {
 						if ($this->keterangan->Exportable) $Doc->ExportField($this->keterangan);
 						if ($this->tipe->Exportable) $Doc->ExportField($this->tipe);
 						if ($this->status->Exportable) $Doc->ExportField($this->status);
+						if ($this->group2->Exportable) $Doc->ExportField($this->group2);
 					} else {
 						if ($this->group->Exportable) $Doc->ExportField($this->group);
 						if ($this->id->Exportable) $Doc->ExportField($this->id);
@@ -1033,6 +1060,7 @@ class ctrekening3 extends cTable {
 						if ($this->tipe->Exportable) $Doc->ExportField($this->tipe);
 						if ($this->status->Exportable) $Doc->ExportField($this->status);
 						if ($this->active->Exportable) $Doc->ExportField($this->active);
+						if ($this->group2->Exportable) $Doc->ExportField($this->group2);
 					}
 					$Doc->EndExportRow();
 				}
@@ -1118,7 +1146,19 @@ class ctrekening3 extends cTable {
 
 		// Enter your code here
 		// To cancel, set return value to FALSE
+		// ambil nilai KODE REKENING
 
+		if ($rsnew["id3"] <> "") {
+			$rsnew["id"] = $rsnew["id3"];
+		}
+
+		// ambil nilai POSISI
+		$q = "select posisi from trekening3 where `group` = ".$rsnew["group"]."";
+		$rsnew["posisi"] = ew_ExecuteScalar($q);
+
+		// ambil nilai LAPORAN
+		$q = "select laporan from trekening3 where `group` = ".$rsnew["group"]."";
+		$rsnew["laporan"] = ew_ExecuteScalar($q);
 		return TRUE;
 	}
 
@@ -1133,7 +1173,11 @@ class ctrekening3 extends cTable {
 
 		// Enter your code here
 		// To cancel, set return value to FALSE
+		// ambil nilai KODE REKENING
 
+		if ($rsnew["id3"] <> "") {
+			$rsnew["id"] = $rsnew["id3"];
+		}
 		return TRUE;
 	}
 

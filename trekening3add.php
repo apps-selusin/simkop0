@@ -255,14 +255,9 @@ class ctrekening3_add extends ctrekening3 {
 		$objForm = new cFormObj();
 		$this->CurrentAction = (@$_GET["a"] <> "") ? $_GET["a"] : @$_POST["a_list"]; // Set up current action
 		$this->group->SetVisibility();
-		$this->id->SetVisibility();
-		$this->id1->SetVisibility();
-		$this->id2->SetVisibility();
 		$this->parent->SetVisibility();
 		$this->id3->SetVisibility();
 		$this->rekening->SetVisibility();
-		$this->posisi->SetVisibility();
-		$this->laporan->SetVisibility();
 		$this->keterangan->SetVisibility();
 		$this->tipe->SetVisibility();
 		$this->status->SetVisibility();
@@ -453,22 +448,12 @@ class ctrekening3_add extends ctrekening3 {
 	// Load default values
 	function LoadDefaultValues() {
 		$this->group->CurrentValue = 0;
-		$this->id->CurrentValue = NULL;
-		$this->id->OldValue = $this->id->CurrentValue;
-		$this->id1->CurrentValue = NULL;
-		$this->id1->OldValue = $this->id1->CurrentValue;
-		$this->id2->CurrentValue = NULL;
-		$this->id2->OldValue = $this->id2->CurrentValue;
 		$this->parent->CurrentValue = NULL;
 		$this->parent->OldValue = $this->parent->CurrentValue;
 		$this->id3->CurrentValue = NULL;
 		$this->id3->OldValue = $this->id3->CurrentValue;
 		$this->rekening->CurrentValue = NULL;
 		$this->rekening->OldValue = $this->rekening->CurrentValue;
-		$this->posisi->CurrentValue = NULL;
-		$this->posisi->OldValue = $this->posisi->CurrentValue;
-		$this->laporan->CurrentValue = NULL;
-		$this->laporan->OldValue = $this->laporan->CurrentValue;
 		$this->keterangan->CurrentValue = NULL;
 		$this->keterangan->OldValue = $this->keterangan->CurrentValue;
 		$this->tipe->CurrentValue = NULL;
@@ -485,15 +470,6 @@ class ctrekening3_add extends ctrekening3 {
 		if (!$this->group->FldIsDetailKey) {
 			$this->group->setFormValue($objForm->GetValue("x_group"));
 		}
-		if (!$this->id->FldIsDetailKey) {
-			$this->id->setFormValue($objForm->GetValue("x_id"));
-		}
-		if (!$this->id1->FldIsDetailKey) {
-			$this->id1->setFormValue($objForm->GetValue("x_id1"));
-		}
-		if (!$this->id2->FldIsDetailKey) {
-			$this->id2->setFormValue($objForm->GetValue("x_id2"));
-		}
 		if (!$this->parent->FldIsDetailKey) {
 			$this->parent->setFormValue($objForm->GetValue("x_parent"));
 		}
@@ -502,12 +478,6 @@ class ctrekening3_add extends ctrekening3 {
 		}
 		if (!$this->rekening->FldIsDetailKey) {
 			$this->rekening->setFormValue($objForm->GetValue("x_rekening"));
-		}
-		if (!$this->posisi->FldIsDetailKey) {
-			$this->posisi->setFormValue($objForm->GetValue("x_posisi"));
-		}
-		if (!$this->laporan->FldIsDetailKey) {
-			$this->laporan->setFormValue($objForm->GetValue("x_laporan"));
 		}
 		if (!$this->keterangan->FldIsDetailKey) {
 			$this->keterangan->setFormValue($objForm->GetValue("x_keterangan"));
@@ -518,21 +488,19 @@ class ctrekening3_add extends ctrekening3 {
 		if (!$this->status->FldIsDetailKey) {
 			$this->status->setFormValue($objForm->GetValue("x_status"));
 		}
+		if (!$this->id->FldIsDetailKey)
+			$this->id->setFormValue($objForm->GetValue("x_id"));
 	}
 
 	// Restore form values
 	function RestoreFormValues() {
 		global $objForm;
 		$this->LoadOldRecord();
-		$this->group->CurrentValue = $this->group->FormValue;
 		$this->id->CurrentValue = $this->id->FormValue;
-		$this->id1->CurrentValue = $this->id1->FormValue;
-		$this->id2->CurrentValue = $this->id2->FormValue;
+		$this->group->CurrentValue = $this->group->FormValue;
 		$this->parent->CurrentValue = $this->parent->FormValue;
 		$this->id3->CurrentValue = $this->id3->FormValue;
 		$this->rekening->CurrentValue = $this->rekening->FormValue;
-		$this->posisi->CurrentValue = $this->posisi->FormValue;
-		$this->laporan->CurrentValue = $this->laporan->FormValue;
 		$this->keterangan->CurrentValue = $this->keterangan->FormValue;
 		$this->tipe->CurrentValue = $this->tipe->FormValue;
 		$this->status->CurrentValue = $this->status->FormValue;
@@ -580,6 +548,7 @@ class ctrekening3_add extends ctrekening3 {
 		$this->tipe->setDbValue($rs->fields('tipe'));
 		$this->status->setDbValue($rs->fields('status'));
 		$this->active->setDbValue($rs->fields('active'));
+		$this->group2->setDbValue($rs->fields('group2'));
 	}
 
 	// Load DbValue from recordset
@@ -599,6 +568,7 @@ class ctrekening3_add extends ctrekening3 {
 		$this->tipe->DbValue = $row['tipe'];
 		$this->status->DbValue = $row['status'];
 		$this->active->DbValue = $row['active'];
+		$this->group2->DbValue = $row['group2'];
 	}
 
 	// Load old record
@@ -647,6 +617,7 @@ class ctrekening3_add extends ctrekening3 {
 		// tipe
 		// status
 		// active
+		// group2
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
 
@@ -760,25 +731,14 @@ class ctrekening3_add extends ctrekening3 {
 		}
 		$this->active->ViewCustomAttributes = "";
 
+		// group2
+		$this->group2->ViewValue = $this->group2->CurrentValue;
+		$this->group2->ViewCustomAttributes = "";
+
 			// group
 			$this->group->LinkCustomAttributes = "";
 			$this->group->HrefValue = "";
 			$this->group->TooltipValue = "";
-
-			// id
-			$this->id->LinkCustomAttributes = "";
-			$this->id->HrefValue = "";
-			$this->id->TooltipValue = "";
-
-			// id1
-			$this->id1->LinkCustomAttributes = "";
-			$this->id1->HrefValue = "";
-			$this->id1->TooltipValue = "";
-
-			// id2
-			$this->id2->LinkCustomAttributes = "";
-			$this->id2->HrefValue = "";
-			$this->id2->TooltipValue = "";
 
 			// parent
 			$this->parent->LinkCustomAttributes = "";
@@ -794,16 +754,6 @@ class ctrekening3_add extends ctrekening3 {
 			$this->rekening->LinkCustomAttributes = "";
 			$this->rekening->HrefValue = "";
 			$this->rekening->TooltipValue = "";
-
-			// posisi
-			$this->posisi->LinkCustomAttributes = "";
-			$this->posisi->HrefValue = "";
-			$this->posisi->TooltipValue = "";
-
-			// laporan
-			$this->laporan->LinkCustomAttributes = "";
-			$this->laporan->HrefValue = "";
-			$this->laporan->TooltipValue = "";
 
 			// keterangan
 			$this->keterangan->LinkCustomAttributes = "";
@@ -842,24 +792,6 @@ class ctrekening3_add extends ctrekening3 {
 			if ($rswrk) $rswrk->Close();
 			$this->group->EditValue = $arwrk;
 
-			// id
-			$this->id->EditAttrs["class"] = "form-control";
-			$this->id->EditCustomAttributes = "";
-			$this->id->EditValue = ew_HtmlEncode($this->id->CurrentValue);
-			$this->id->PlaceHolder = ew_RemoveHtml($this->id->FldCaption());
-
-			// id1
-			$this->id1->EditAttrs["class"] = "form-control";
-			$this->id1->EditCustomAttributes = "";
-			$this->id1->EditValue = ew_HtmlEncode($this->id1->CurrentValue);
-			$this->id1->PlaceHolder = ew_RemoveHtml($this->id1->FldCaption());
-
-			// id2
-			$this->id2->EditAttrs["class"] = "form-control";
-			$this->id2->EditCustomAttributes = "";
-			$this->id2->EditValue = ew_HtmlEncode($this->id2->CurrentValue);
-			$this->id2->PlaceHolder = ew_RemoveHtml($this->id2->FldCaption());
-
 			// parent
 			$this->parent->EditAttrs["class"] = "form-control";
 			$this->parent->EditCustomAttributes = "";
@@ -868,7 +800,7 @@ class ctrekening3_add extends ctrekening3 {
 			} else {
 				$sFilterWrk = "`id`" . ew_SearchString("=", $this->parent->CurrentValue, EW_DATATYPE_STRING, "");
 			}
-			$sSqlWrk = "SELECT `id`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `trekening3`";
+			$sSqlWrk = "SELECT `id`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, substring(id,1,1) AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `trekening3`";
 			$sWhereWrk = "";
 			$this->parent->LookupFilters = array();
 			ew_AddFilter($sWhereWrk, $sFilterWrk);
@@ -891,18 +823,6 @@ class ctrekening3_add extends ctrekening3 {
 			$this->rekening->EditValue = ew_HtmlEncode($this->rekening->CurrentValue);
 			$this->rekening->PlaceHolder = ew_RemoveHtml($this->rekening->FldCaption());
 
-			// posisi
-			$this->posisi->EditAttrs["class"] = "form-control";
-			$this->posisi->EditCustomAttributes = "";
-			$this->posisi->EditValue = ew_HtmlEncode($this->posisi->CurrentValue);
-			$this->posisi->PlaceHolder = ew_RemoveHtml($this->posisi->FldCaption());
-
-			// laporan
-			$this->laporan->EditAttrs["class"] = "form-control";
-			$this->laporan->EditCustomAttributes = "";
-			$this->laporan->EditValue = ew_HtmlEncode($this->laporan->CurrentValue);
-			$this->laporan->PlaceHolder = ew_RemoveHtml($this->laporan->FldCaption());
-
 			// keterangan
 			$this->keterangan->EditAttrs["class"] = "form-control";
 			$this->keterangan->EditCustomAttributes = "";
@@ -923,18 +843,6 @@ class ctrekening3_add extends ctrekening3 {
 			$this->group->LinkCustomAttributes = "";
 			$this->group->HrefValue = "";
 
-			// id
-			$this->id->LinkCustomAttributes = "";
-			$this->id->HrefValue = "";
-
-			// id1
-			$this->id1->LinkCustomAttributes = "";
-			$this->id1->HrefValue = "";
-
-			// id2
-			$this->id2->LinkCustomAttributes = "";
-			$this->id2->HrefValue = "";
-
 			// parent
 			$this->parent->LinkCustomAttributes = "";
 			$this->parent->HrefValue = "";
@@ -946,14 +854,6 @@ class ctrekening3_add extends ctrekening3 {
 			// rekening
 			$this->rekening->LinkCustomAttributes = "";
 			$this->rekening->HrefValue = "";
-
-			// posisi
-			$this->posisi->LinkCustomAttributes = "";
-			$this->posisi->HrefValue = "";
-
-			// laporan
-			$this->laporan->LinkCustomAttributes = "";
-			$this->laporan->HrefValue = "";
 
 			// keterangan
 			$this->keterangan->LinkCustomAttributes = "";
@@ -988,9 +888,6 @@ class ctrekening3_add extends ctrekening3 {
 		// Check if validation required
 		if (!EW_SERVER_VALIDATE)
 			return ($gsFormError == "");
-		if (!$this->id->FldIsDetailKey && !is_null($this->id->FormValue) && $this->id->FormValue == "") {
-			ew_AddMessage($gsFormError, str_replace("%s", $this->id->FldCaption(), $this->id->ReqErrMsg));
-		}
 
 		// Return validate result
 		$ValidateForm = ($gsFormError == "");
@@ -1018,15 +915,6 @@ class ctrekening3_add extends ctrekening3 {
 		// group
 		$this->group->SetDbValueDef($rsnew, $this->group->CurrentValue, NULL, strval($this->group->CurrentValue) == "");
 
-		// id
-		$this->id->SetDbValueDef($rsnew, $this->id->CurrentValue, "", FALSE);
-
-		// id1
-		$this->id1->SetDbValueDef($rsnew, $this->id1->CurrentValue, NULL, FALSE);
-
-		// id2
-		$this->id2->SetDbValueDef($rsnew, $this->id2->CurrentValue, NULL, FALSE);
-
 		// parent
 		$this->parent->SetDbValueDef($rsnew, $this->parent->CurrentValue, NULL, FALSE);
 
@@ -1035,12 +923,6 @@ class ctrekening3_add extends ctrekening3 {
 
 		// rekening
 		$this->rekening->SetDbValueDef($rsnew, $this->rekening->CurrentValue, NULL, FALSE);
-
-		// posisi
-		$this->posisi->SetDbValueDef($rsnew, $this->posisi->CurrentValue, NULL, FALSE);
-
-		// laporan
-		$this->laporan->SetDbValueDef($rsnew, $this->laporan->CurrentValue, NULL, FALSE);
 
 		// keterangan
 		$this->keterangan->SetDbValueDef($rsnew, $this->keterangan->CurrentValue, NULL, FALSE);
@@ -1131,9 +1013,9 @@ class ctrekening3_add extends ctrekening3 {
 		case "x_parent":
 			$sSqlWrk = "";
 			$sSqlWrk = "SELECT `id` AS `LinkFld`, `rekening` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `trekening3`";
-			$sWhereWrk = "";
+			$sWhereWrk = "{filter}";
 			$this->parent->LookupFilters = array();
-			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => '`id` = {filter_value}', "t0" => "200", "fn0" => "");
+			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => '`id` = {filter_value}', "t0" => "200", "fn0" => "", "f1" => 'substring(id,1,1) IN ({filter_value})', "t1" => "200", "fn1" => "");
 			$sSqlWrk = "";
 			$this->Lookup_Selecting($this->parent, $sWhereWrk); // Call Lookup selecting
 			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
@@ -1259,9 +1141,6 @@ ftrekening3add.Validate = function() {
 	for (var i = startcnt; i <= rowcnt; i++) {
 		var infix = ($k[0]) ? String(i) : "";
 		$fobj.data("rowindex", infix);
-			elm = this.GetElements("x" + infix + "_id");
-			if (elm && !ew_IsHidden(elm) && !ew_HasValue(elm))
-				return this.OnError(elm, "<?php echo ew_JsEncode2(str_replace("%s", $trekening3->id->FldCaption(), $trekening3->id->ReqErrMsg)) ?>");
 
 			// Fire Form_CustomValidate event
 			if (!this.Form_CustomValidate(fobj))
@@ -1295,8 +1174,8 @@ ftrekening3add.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-ftrekening3add.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
-ftrekening3add.Lists["x_parent"] = {"LinkField":"x_id","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
+ftrekening3add.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":["x_parent"],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
+ftrekening3add.Lists["x_parent"] = {"LinkField":"x_id","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":["x_group"],"ChildFields":[],"FilterFields":["x_group2"],"Options":[],"Template":"","LinkTable":"trekening3"};
 ftrekening3add.Lists["x_tipe"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
 ftrekening3add.Lists["x_tipe"].Options = <?php echo json_encode($trekening3->tipe->Options()) ?>;
 ftrekening3add.Lists["x_status[]"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
@@ -1334,42 +1213,13 @@ $trekening3_add->ShowMessage();
 		<label id="elh_trekening3_group" for="x_group" class="col-sm-2 control-label ewLabel"><?php echo $trekening3->group->FldCaption() ?></label>
 		<div class="col-sm-10"><div<?php echo $trekening3->group->CellAttributes() ?>>
 <span id="el_trekening3_group">
+<?php $trekening3->group->EditAttrs["onchange"] = "ew_UpdateOpt.call(this); " . @$trekening3->group->EditAttrs["onchange"]; ?>
 <select data-table="trekening3" data-field="x_group" data-value-separator="<?php echo $trekening3->group->DisplayValueSeparatorAttribute() ?>" id="x_group" name="x_group"<?php echo $trekening3->group->EditAttributes() ?>>
 <?php echo $trekening3->group->SelectOptionListHtml("x_group") ?>
 </select>
 <input type="hidden" name="s_x_group" id="s_x_group" value="<?php echo $trekening3->group->LookupFilterQuery() ?>">
 </span>
 <?php echo $trekening3->group->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($trekening3->id->Visible) { // id ?>
-	<div id="r_id" class="form-group">
-		<label id="elh_trekening3_id" for="x_id" class="col-sm-2 control-label ewLabel"><?php echo $trekening3->id->FldCaption() ?><?php echo $Language->Phrase("FieldRequiredIndicator") ?></label>
-		<div class="col-sm-10"><div<?php echo $trekening3->id->CellAttributes() ?>>
-<span id="el_trekening3_id">
-<input type="text" data-table="trekening3" data-field="x_id" name="x_id" id="x_id" size="30" maxlength="35" placeholder="<?php echo ew_HtmlEncode($trekening3->id->getPlaceHolder()) ?>" value="<?php echo $trekening3->id->EditValue ?>"<?php echo $trekening3->id->EditAttributes() ?>>
-</span>
-<?php echo $trekening3->id->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($trekening3->id1->Visible) { // id1 ?>
-	<div id="r_id1" class="form-group">
-		<label id="elh_trekening3_id1" for="x_id1" class="col-sm-2 control-label ewLabel"><?php echo $trekening3->id1->FldCaption() ?></label>
-		<div class="col-sm-10"><div<?php echo $trekening3->id1->CellAttributes() ?>>
-<span id="el_trekening3_id1">
-<input type="text" data-table="trekening3" data-field="x_id1" name="x_id1" id="x_id1" size="30" maxlength="35" placeholder="<?php echo ew_HtmlEncode($trekening3->id1->getPlaceHolder()) ?>" value="<?php echo $trekening3->id1->EditValue ?>"<?php echo $trekening3->id1->EditAttributes() ?>>
-</span>
-<?php echo $trekening3->id1->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($trekening3->id2->Visible) { // id2 ?>
-	<div id="r_id2" class="form-group">
-		<label id="elh_trekening3_id2" for="x_id2" class="col-sm-2 control-label ewLabel"><?php echo $trekening3->id2->FldCaption() ?></label>
-		<div class="col-sm-10"><div<?php echo $trekening3->id2->CellAttributes() ?>>
-<span id="el_trekening3_id2">
-<input type="text" data-table="trekening3" data-field="x_id2" name="x_id2" id="x_id2" size="30" maxlength="35" placeholder="<?php echo ew_HtmlEncode($trekening3->id2->getPlaceHolder()) ?>" value="<?php echo $trekening3->id2->EditValue ?>"<?php echo $trekening3->id2->EditAttributes() ?>>
-</span>
-<?php echo $trekening3->id2->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($trekening3->parent->Visible) { // parent ?>
@@ -1403,26 +1253,6 @@ $trekening3_add->ShowMessage();
 <input type="text" data-table="trekening3" data-field="x_rekening" name="x_rekening" id="x_rekening" size="30" maxlength="90" placeholder="<?php echo ew_HtmlEncode($trekening3->rekening->getPlaceHolder()) ?>" value="<?php echo $trekening3->rekening->EditValue ?>"<?php echo $trekening3->rekening->EditAttributes() ?>>
 </span>
 <?php echo $trekening3->rekening->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($trekening3->posisi->Visible) { // posisi ?>
-	<div id="r_posisi" class="form-group">
-		<label id="elh_trekening3_posisi" for="x_posisi" class="col-sm-2 control-label ewLabel"><?php echo $trekening3->posisi->FldCaption() ?></label>
-		<div class="col-sm-10"><div<?php echo $trekening3->posisi->CellAttributes() ?>>
-<span id="el_trekening3_posisi">
-<input type="text" data-table="trekening3" data-field="x_posisi" name="x_posisi" id="x_posisi" size="30" maxlength="35" placeholder="<?php echo ew_HtmlEncode($trekening3->posisi->getPlaceHolder()) ?>" value="<?php echo $trekening3->posisi->EditValue ?>"<?php echo $trekening3->posisi->EditAttributes() ?>>
-</span>
-<?php echo $trekening3->posisi->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($trekening3->laporan->Visible) { // laporan ?>
-	<div id="r_laporan" class="form-group">
-		<label id="elh_trekening3_laporan" for="x_laporan" class="col-sm-2 control-label ewLabel"><?php echo $trekening3->laporan->FldCaption() ?></label>
-		<div class="col-sm-10"><div<?php echo $trekening3->laporan->CellAttributes() ?>>
-<span id="el_trekening3_laporan">
-<input type="text" data-table="trekening3" data-field="x_laporan" name="x_laporan" id="x_laporan" size="30" maxlength="35" placeholder="<?php echo ew_HtmlEncode($trekening3->laporan->getPlaceHolder()) ?>" value="<?php echo $trekening3->laporan->EditValue ?>"<?php echo $trekening3->laporan->EditAttributes() ?>>
-</span>
-<?php echo $trekening3->laporan->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($trekening3->keterangan->Visible) { // keterangan ?>

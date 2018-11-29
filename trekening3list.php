@@ -681,6 +681,7 @@ class ctrekening3_list extends ctrekening3 {
 		$sFilterList = ew_Concat($sFilterList, $this->tipe->AdvancedSearch->ToJSON(), ","); // Field tipe
 		$sFilterList = ew_Concat($sFilterList, $this->status->AdvancedSearch->ToJSON(), ","); // Field status
 		$sFilterList = ew_Concat($sFilterList, $this->active->AdvancedSearch->ToJSON(), ","); // Field active
+		$sFilterList = ew_Concat($sFilterList, $this->group2->AdvancedSearch->ToJSON(), ","); // Field group2
 		$sFilterList = preg_replace('/,$/', "", $sFilterList);
 
 		// Return filter list in json
@@ -824,6 +825,14 @@ class ctrekening3_list extends ctrekening3 {
 		$this->active->AdvancedSearch->SearchValue2 = @$filter["y_active"];
 		$this->active->AdvancedSearch->SearchOperator2 = @$filter["w_active"];
 		$this->active->AdvancedSearch->Save();
+
+		// Field group2
+		$this->group2->AdvancedSearch->SearchValue = @$filter["x_group2"];
+		$this->group2->AdvancedSearch->SearchOperator = @$filter["z_group2"];
+		$this->group2->AdvancedSearch->SearchCondition = @$filter["v_group2"];
+		$this->group2->AdvancedSearch->SearchValue2 = @$filter["y_group2"];
+		$this->group2->AdvancedSearch->SearchOperator2 = @$filter["w_group2"];
+		$this->group2->AdvancedSearch->Save();
 	}
 
 	// Advanced search WHERE clause based on QueryString
@@ -843,6 +852,7 @@ class ctrekening3_list extends ctrekening3 {
 		$this->BuildSearchSql($sWhere, $this->tipe, $Default, FALSE); // tipe
 		$this->BuildSearchSql($sWhere, $this->status, $Default, TRUE); // status
 		$this->BuildSearchSql($sWhere, $this->active, $Default, FALSE); // active
+		$this->BuildSearchSql($sWhere, $this->group2, $Default, FALSE); // group2
 
 		// Set up search parm
 		if (!$Default && $sWhere <> "") {
@@ -862,6 +872,7 @@ class ctrekening3_list extends ctrekening3 {
 			$this->tipe->AdvancedSearch->Save(); // tipe
 			$this->status->AdvancedSearch->Save(); // status
 			$this->active->AdvancedSearch->Save(); // active
+			$this->group2->AdvancedSearch->Save(); // group2
 		}
 		return $sWhere;
 	}
@@ -942,6 +953,8 @@ class ctrekening3_list extends ctrekening3 {
 			return TRUE;
 		if ($this->active->AdvancedSearch->IssetSession())
 			return TRUE;
+		if ($this->group2->AdvancedSearch->IssetSession())
+			return TRUE;
 		return FALSE;
 	}
 
@@ -976,6 +989,7 @@ class ctrekening3_list extends ctrekening3 {
 		$this->tipe->AdvancedSearch->UnsetSession();
 		$this->status->AdvancedSearch->UnsetSession();
 		$this->active->AdvancedSearch->UnsetSession();
+		$this->group2->AdvancedSearch->UnsetSession();
 	}
 
 	// Restore all search parameters
@@ -996,6 +1010,7 @@ class ctrekening3_list extends ctrekening3 {
 		$this->tipe->AdvancedSearch->Load();
 		$this->status->AdvancedSearch->Load();
 		$this->active->AdvancedSearch->Load();
+		$this->group2->AdvancedSearch->Load();
 	}
 
 	// Set up sort parameters
@@ -1470,6 +1485,11 @@ class ctrekening3_list extends ctrekening3 {
 		$this->active->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_active"]);
 		if ($this->active->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->active->AdvancedSearch->SearchOperator = @$_GET["z_active"];
+
+		// group2
+		$this->group2->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_group2"]);
+		if ($this->group2->AdvancedSearch->SearchValue <> "") $this->Command = "search";
+		$this->group2->AdvancedSearch->SearchOperator = @$_GET["z_group2"];
 	}
 
 	// Load recordset
@@ -1540,6 +1560,7 @@ class ctrekening3_list extends ctrekening3 {
 		$this->tipe->setDbValue($rs->fields('tipe'));
 		$this->status->setDbValue($rs->fields('status'));
 		$this->active->setDbValue($rs->fields('active'));
+		$this->group2->setDbValue($rs->fields('group2'));
 	}
 
 	// Load DbValue from recordset
@@ -1559,6 +1580,7 @@ class ctrekening3_list extends ctrekening3 {
 		$this->tipe->DbValue = $row['tipe'];
 		$this->status->DbValue = $row['status'];
 		$this->active->DbValue = $row['active'];
+		$this->group2->DbValue = $row['group2'];
 	}
 
 	// Load old record
@@ -1613,6 +1635,7 @@ class ctrekening3_list extends ctrekening3 {
 		// tipe
 		// status
 		// active
+		// group2
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
 
@@ -1725,6 +1748,10 @@ class ctrekening3_list extends ctrekening3 {
 			$this->active->ViewValue = NULL;
 		}
 		$this->active->ViewCustomAttributes = "";
+
+		// group2
+		$this->group2->ViewValue = $this->group2->CurrentValue;
+		$this->group2->ViewCustomAttributes = "";
 
 			// group
 			$this->group->LinkCustomAttributes = "";
@@ -1855,6 +1882,7 @@ class ctrekening3_list extends ctrekening3 {
 		$this->tipe->AdvancedSearch->Load();
 		$this->status->AdvancedSearch->Load();
 		$this->active->AdvancedSearch->Load();
+		$this->group2->AdvancedSearch->Load();
 	}
 
 	// Set up Breadcrumb
@@ -2069,7 +2097,7 @@ ftrekening3list.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-ftrekening3list.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
+ftrekening3list.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":["x_parent"],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
 ftrekening3list.Lists["x_status[]"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
 ftrekening3list.Lists["x_status[]"].Options = <?php echo json_encode($trekening3->status->Options()) ?>;
 
@@ -2105,7 +2133,7 @@ ftrekening3listsrch.ValidateRequired = false; // No JavaScript validation
 <?php } ?>
 
 // Dynamic selection lists
-ftrekening3listsrch.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
+ftrekening3listsrch.Lists["x_group"] = {"LinkField":"x_group","Ajax":true,"AutoFill":false,"DisplayFields":["x_rekening","","",""],"ParentFields":[],"ChildFields":["x_parent"],"FilterFields":[],"Options":[],"Template":"","LinkTable":"trekening3"};
 </script>
 <script type="text/javascript">
 
